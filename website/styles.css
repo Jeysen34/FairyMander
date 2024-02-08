@@ -1,0 +1,54 @@
+/* style for body */
+body {
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* style for header */
+.header {
+  background-color: lightgrey;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  color: black;
+}
+
+/* style for nav */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  margin-right: 5rem;
+}
+
+nav a {
+  color: black;
+  text-decoration: none;
+}
+
+/* style for main */
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50rem;
+  text-align: center;
+}
+
+/* style for footer */
+footer {
+  background-color: lightgrey;
+  color: black;
+  text-align: left;
+  padding: 1rem 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
