@@ -1,3 +1,3 @@
 # FairyMander
 
-### a "fair" way to gerrymander... ###
+ a "fair" way to gerrymander...
