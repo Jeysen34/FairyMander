@@ -31,14 +31,11 @@ display the effectiveness and widespread application of the redistricting algori
 ## Solution
 
 
-
 # Technology
-
 
 
 # Project Schedule
 
-
-
+![FairyMander](media/schedule.png)
 
 # Meet The Sponsor
