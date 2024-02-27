@@ -2,7 +2,7 @@ Instructions: https://www.ceias.nau.edu/cs/CS_Capstone/Assignments/website-assmt
 
 
 # Project Description  
-**Problem:** Gerrymandering poses a threat to our democracy; it has the potential to make voting obsolete.  
+Gerrymandering poses a threat to our democracy; it has the potential to make voting obsolete.  
 Representatives manipulate district lines to control the voting outcome using two popular strategies; packing and cracking.  
 Packing involves grouping like-minded individuals into one district as a way to keep them "contained".   
 Cracking is used to split like-minded individuals up in order to dilute their votes, thus making them ineffective.  
