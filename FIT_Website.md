@@ -1,3 +1,6 @@
+Instructions: https://www.ceias.nau.edu/cs/CS_Capstone/Assignments/website-assmt.html
+
+
 # Project Description  
 **Problem:** Gerrymandering poses a threat to our democracy; it has the potential to make voting obsolete.  
 Representatives manipulate district lines to control the voting outcome using two popular strategies; packing and cracking.  
@@ -10,7 +13,10 @@ Different social and economic communities will be considered, ensuring that thei
 We plan to make our algorithm accessible and easy to use by implementing a GUI that will provide a visual   
 representation of our proposed voting districts.
 
+(The image to be included is the packing_cracking_example.png)
 
+The initial concept for this project was provided by our sponsor, in the form of a <link>Capstone project proposal</link>
+Here is the link to the capstone project proposal: https://www.ceias.nau.edu/cs/CS_Capstone/Projects/S24/BeroB_VotingDistricts_v01.pdf
 
 
 ## Requirements
