@@ -17,7 +17,9 @@ We plan to make our algorithm accessible and easy to use by implementing a GUI t
 representation of our proposed voting districts.
 
 
-The initial concept for this project was provided by our sponsor, in the form of a Capstone project proposal   
+The initial concept for this project was provided by our sponsor, in the form of a Capstone project proposal.  
+
+**Note:**
 Capstone project proposal should be a link to the following: https://www.ceias.nau.edu/cs/CS_Capstone/Projects/S24/BeroB_VotingDistricts_v01.pdf
 
 
