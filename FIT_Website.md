@@ -25,10 +25,21 @@ Capstone project proposal should be a link to the following: https://www.ceias.n
 
 ## Requirements
 
+### District Drawing Algorithm
 
+A critical component of FairyMander lies in its ability to fairly draw voting districts, necessitating the development
+of an algorithm that, when given a state, can fairly draw voting district lines. To ensure the quality of this algorithm,
+research, expert opinion, and varying factors between states will be used to develop the most fair redistricting policy possible. It is
+anticipated that this will be the most significant component of the project in terms of development time, as it requires a great deal of 
+thoughtful analysis to create and implement in a way that is fair and applicable to all 50 states.
 
-## Solution
+### Before and After Comparison For an Individual State
 
+To illustrate the capabilities of FairyMander, a user will be able to compare a state's voting district lines before and after
+our algorithm is applied to it. This will provide both a visual aid for the aforementioned algorithm and a method of communicating
+how fair districts can be drawn to the user.
+
+### Interactive U.S. Map
 
 
 # Technology
@@ -50,9 +61,27 @@ Version control
 ### United States Census Bureau API
 An API created by the United States government allowing for access to the most recent census data. Available [here](https://www.census.gov/data/developers/guidance/api-user-guide.html), this API allows us to implement real-world data into our algorithm and accounts for the demographical information of all 50 states!
 
+As a comprehensive display of what FairyMander can do, an interactive map will be used to enable users to select a particular state
+and observe how the algorithm applies to said state. This will not only allow users to easily find state(s) of interest, but will also 
+display the effectiveness and widespread application of the redistricting algorithm.
+
+## Solution
+
+**CJ's OG:**  
+This capstone solution is to create an algorithm that redraws certain districts that have major gerrymandering in that certain state. To create this certain algorithm it needs to be fair and unbiased. There need to be clear criteria for redrawing the districts for them to be fair. One of the first categories that needs to be filled is compactness. Compactness makes sure that the algorithm avoids sprawling shapes that dilute or concentrate specific demographics. Another category is contiguity which means not breaking up a district. The next thing that the algorithm is looking for is a community of interest. The districts should consider that the community has the same sense of natural, economic, and social communities. The community of interest shows a similar idea of what that population is like. The next thing to understand for the algorithm is having an equal population for each district. One more thing to look for is respecting the existing political boundaries. There are lines already made, the algorithm is just moving the lines, not moving the districts completely. By using these guidelines the team will create an algorithm through census data and GIS.
+
+**Sophia's Revision:**  
+Our envisioned capstone solution is to create an algorithm that redraws the voting districts in states with major gerrymandering. This algorithm needs to be fair and unbiased; to achieve this we will utilize census data, geographic information systems, and adhere to specific criteria. One of the first criteria that needs to be satisfied is compactness. Compactness ensures that the algorithm avoids drawing districts as sprawling shapes that would dilute or concentrate specific demographics. The districts must also be contiguous, meaning that all parts of the district must be in contact with each other; this will prevent the splitting of a district. The next thing that the algorithm is looking for are communities of interest; districts should consider underrepresented communities in respect to race, ethnicity, origin, etc. The community of interest provides an idea of what that population is like. Our algorithm will ensure an equal population within each district and will respect existing political boundaries. There are lines already made, the algorithm is just moving the lines, not moving districts completely.
+
+
+
+
+# Technology
+
+
 # Project Schedule
 
-
-
+![FairyMander](media/schedule.png)
 
 # Meet The Sponsor
+Dr. Bridget Bero has worked at Northern Arizona University for 30 years. She has created a career in environmental engineering and created a family. She is a grandmother and yoga instructor in her free time. Through her environmental engineering past, she had seen that the system that was placed in our democracy is not always fair.
