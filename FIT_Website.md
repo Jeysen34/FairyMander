@@ -41,3 +41,4 @@ Capstone project proposal should be a link to the following: https://www.ceias.n
 
 
 # Meet The Sponsor
+Dr. Bridget Bero has worked at Northern Arizona University for 30 years. She has created a career in environmental engineering and created a family. She is a grandmother and yoga instructor in her free time. Through her environmental engineering past, she had seen that the system that was placed in our democracy is not always fair.
