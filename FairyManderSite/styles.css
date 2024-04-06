@@ -74,14 +74,15 @@ main {
 
 /* style for quicklinks */
 .quicklinkscont {
-  padding: 1rem;
-  font-size: large;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  color: white;
   border-radius: 1rem;
-  border-style: solid;
-  border-color: darkblue;
-  border-width: 0.325rem;
-  background-color: lightgrey;
+  max-width: 100%;
   margin-bottom: 2rem;
+  background-color: lightgrey;
 }
 
 /* style for quicklinks title */
@@ -94,12 +95,15 @@ main {
 }
 
 .quicklinks a {
-  color: black;
+  flex-grow: 0;
+  padding: 20px;
+  background-color: #191919;
+  color: white;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background-color 0.5s;
+  margin: 0.5rem;
   text-decoration: none;
-  font-size: larger;
-  margin-right: 2rem;
-  transition: font-weight 0.5s;
-  position: relative;
 }
 
 /* style for nav bold hover */
