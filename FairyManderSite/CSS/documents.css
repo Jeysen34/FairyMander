@@ -1,0 +1,278 @@
+/* style for body */
+body {
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* style for header */
+.header {
+  background-color: lightgrey;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  color: black;
+}
+
+/* style for nav */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  padding-right: 5rem;
+}
+
+nav a {
+  color: black;
+  text-decoration: none;
+  font-size: larger;
+  margin-right: 2rem;
+  transition: font-weight 0.5s;
+  position: relative;
+}
+
+/* style for nav bold hover */
+nav a:hover {
+  font-weight: bold;
+}
+
+/* style for nav underline hover */
+nav a::before {
+  color: lightgrey;
+}
+nav a::after {
+  content: "";
+  height: 0.3rem;
+  width: 100%;
+  background: linear-gradient(50deg, red, darkblue);
+  display: block;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+nav a:hover::after {
+  opacity: 1;
+}
+
+/* ----------------------------------------------------------------------------------------------- */
+
+/* style for main */
+main {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100rem;
+}
+
+/* style for documentation title */
+.documentation-title h1 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 0.5rem solid darkblue;
+  line-height: 0.5rem;
+  padding-top: 8.5rem;
+}
+
+.documentation-title h1 span {
+  background: white;
+  padding: 0 1rem;
+}
+
+/* style for documentation */
+.documentation {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2rem;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: darkblue;
+  background-color: lightgrey;
+  border-width: 0.325rem;
+}
+
+.documents-card {
+  background-color: lightgrey;
+  padding: 1rem;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: red;
+  line-height: 0.625rem;
+  padding-bottom: 0.0625rem;
+  border-width: 0.325rem;
+  width: 10rem;
+  margin: 2.5rem;
+}
+
+/* style for nav bold hover */
+.documents-front:hover {
+  font-weight: bold;
+}
+/* style for nav underline hover */
+.documents-front::before {
+  color: lightgrey;
+}
+.docremunderline {
+  text-decoration: none;
+  color: black;
+}
+.documents-front::after {
+  content: "";
+  height: 0.3rem;
+  width: 9rem;
+  background: linear-gradient(40deg, red, darkblue);
+  display: block;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.documents-front:hover::after {
+  opacity: 1;
+}
+
+/* style for presentation title */
+.presentation-title h1 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 0.5rem solid red;
+  line-height: 0.5rem;
+  padding-top: 3rem;
+}
+
+.presentation-title h1 span {
+  background: white;
+  padding: 0 1rem;
+}
+
+/* style for presentation */
+.presentation {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 4rem;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: red;
+  background-color: lightgrey;
+  border-width: 0.325rem;
+}
+
+.presentation-card {
+  background-color: lightgrey;
+  padding: 1rem;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: darkblue;
+  line-height: 0.625rem;
+  padding-bottom: 0.0625rem;
+  border-width: 0.325rem;
+  width: 10rem;
+}
+
+/* style for nav bold hover */
+.presentation-front:hover {
+  font-weight: bold;
+}
+/* style for nav underline hover */
+.presentation-front::before {
+  color: lightgrey;
+}
+
+.presentation-front::after {
+  content: "";
+  height: 0.3rem;
+  width: 10rem;
+  background: linear-gradient(40deg, red, darkblue);
+  display: block;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.presentation-front:hover::after {
+  opacity: 1;
+}
+
+/* style for videos title */
+.videos-title h1 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 0.5rem solid darkblue;
+  line-height: 0.5rem;
+  padding-top: 3rem;
+}
+
+.videos-title h1 span {
+  background: white;
+  padding: 0 1rem;
+}
+
+/* style for videos */
+.videos {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  padding: 4rem;
+  font-size: large;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: darkblue;
+  background-color: lightgrey;
+  margin-bottom: 4rem;
+  border-width: 0.325rem;
+}
+
+.videos-card {
+  background-color: lightgrey;
+  padding: 1rem;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: red;
+  line-height: 0.625rem;
+  text-align: center;
+  width: 10rem;
+  padding-bottom: 0.0625rem;
+  border-width: 0.325rem;
+}
+
+/* style for videos bold hover */
+.videos-front:hover {
+  font-weight: bold;
+}
+/* style for videos underline hover */
+.videos-front::before {
+  color: lightgrey;
+}
+
+.videos-front::after {
+  content: "";
+  height: 0.3rem;
+  width: 10rem;
+  background: linear-gradient(40deg, red, darkblue);
+  display: block;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.videos-front:hover::after {
+  opacity: 1;
+}
+
+/* style for footer */
+footer {
+  background-color: lightgrey;
+  color: black;
+  text-align: left;
+  padding: 1rem;
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
