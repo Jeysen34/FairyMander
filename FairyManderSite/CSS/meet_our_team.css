@@ -1,0 +1,159 @@
+/* style for body */
+body {
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+/* style for header */
+.header {
+  background-color: lightgrey;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  color: black;
+}
+
+/* style for nav */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  padding-right: 5rem;
+}
+
+nav a {
+  color: black;
+  text-decoration: none;
+  font-size: larger;
+  margin-right: 2rem;
+  transition: font-weight 0.5s;
+  position: relative;
+}
+
+/* style for nav bold hover */
+nav a:hover {
+  font-weight: bold;
+}
+
+/* style for nav underline hover */
+nav a::before {
+  color: lightgrey;
+}
+nav a::after {
+  content: "";
+  height: 0.3rem;
+  width: 100%;
+  background: linear-gradient(50deg, red, darkblue);
+  display: block;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+nav a:hover::after {
+  opacity: 1;
+}
+
+/* ----------------------------------------------------------------------------------------------- */
+
+/* style for main */
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding-top: 4rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100rem;
+}
+
+/* style for meet-team */
+.meet-team {
+  position: relative;
+  overflow: hidden;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  line-height: 1rem;
+}
+
+/* style for meet team title */
+.meet-team-header {
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding-top: 4rem;
+  margin-right: 1rem;
+}
+
+/* style for meet team container */
+.meet-team-card-cont {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 2rem;
+}
+
+/* style for meet team picture */
+.meet-team-front {
+  align-items: center;
+}
+
+/* style for meet-team-card */
+.meet-team-card {
+  align-items: center;
+  background-color: lightgrey;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: red;
+  border-width: 0.325rem;
+  position: relative;
+  overflow: hidden;
+}
+
+hr {
+  width: 100%;
+  border: 0.1rem solid darkblue;
+}
+
+/* style for meet mentor */
+.meet-mentor {
+  position: relative;
+  overflow: hidden;
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 4rem;
+  line-height: 1rem;
+  margin-right: 1rem;
+}
+
+/* meet mentor inside info */
+.meet-mentor h1 {
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.meet-mentor h2 {
+  align-items: center;
+}
+
+/* style for footer */
+footer {
+  background-color: lightgrey;
+  color: black;
+  text-align: left;
+  padding: 1rem;
+  position: absolute;
+  left: 0;
+  width: 100%;
+}

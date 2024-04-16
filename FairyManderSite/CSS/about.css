@@ -1,0 +1,286 @@
+body {
+  overflow-x: hidden;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+/* style for header */
+.header {
+  background-color: lightgrey;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  color: black;
+}
+
+/* style for nav */
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  padding-right: 5rem;
+}
+
+nav a {
+  color: black;
+  text-decoration: none;
+  font-size: larger;
+  margin-right: 2rem;
+  transition: font-weight 0.5s;
+  position: relative;
+}
+
+/* style for nav bold hover */
+nav a:hover {
+  font-weight: bold;
+}
+
+/* style for nav underline hover */
+nav a::before {
+  color: lightgrey;
+}
+nav a::after {
+  content: "";
+  height: 0.3rem;
+  width: 100%;
+  background: linear-gradient(50deg, red, darkblue);
+  display: block;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+nav a:hover::after {
+  opacity: 1;
+}
+
+/* style for about title*/
+.description-title h1 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 0.5rem solid darkblue;
+  line-height: 0.5rem;
+  padding-top: 8.5rem;
+}
+
+.description-title h1 span {
+  background: white;
+  padding: 0 1rem;
+}
+
+main {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100rem;
+}
+/* style for about */
+.description {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 4rem;
+  font-size: large;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: darkblue;
+  border-width: 0.325rem;
+  background-color: lightgrey;
+}
+
+/* style for about title*/
+.about-title h1 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 0.5rem solid red;
+  line-height: 0.5rem;
+  padding-top: 4rem;
+}
+
+.about-title h1 span {
+  background: white;
+  padding: 0 1rem;
+}
+
+/* style for about */
+.about {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 4rem;
+  font-size: large;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: red;
+  border-width: 0.325rem;
+  background-color: lightgrey;
+}
+
+/* style for technology title */
+.technology-title h1 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 0.5rem solid darkblue;
+  line-height: 0.5rem;
+  padding-top: 3rem;
+}
+
+.technology-title h1 span {
+  background: white;
+  padding: 0 1rem;
+}
+
+.aboutproblem {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  font-size: large;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: darkblue;
+  border-width: 0.325rem;
+  background-color: lightgrey;
+  margin-bottom: 4rem;
+}
+
+.aboutrequirements {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  font-size: large;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: darkblue;
+  border-width: 0.325rem;
+  background-color: lightgrey;
+  margin-bottom: 4rem;
+}
+
+.aboutsolution {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+  font-size: large;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: darkblue;
+  border-width: 0.325rem;
+  background-color: lightgrey;
+  margin-bottom: 4rem;
+}
+
+/* style for technology */
+.technology {
+  display: block;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  padding: 4rem;
+  font-size: large;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: darkblue;
+  border-width: 0.325rem;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 4rem;
+  background-color: lightgrey;
+}
+
+/* style for technology frontend */
+.technology-frontend {
+  display: flex;
+  flex: 0.5;
+  align-items: center;
+  flex-direction: column;
+  font-size: large;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: darkblue;
+  border-width: 0.325rem;
+  background-color: lightgrey;
+  margin: 1rem;
+}
+
+/* style for technology backend */
+.technology-backend {
+  display: flex;
+  flex: 0.5;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: darkblue;
+  border-width: 0.325rem;
+  background-color: lightgrey;
+  margin: 1rem;
+}
+
+/* style for technology other */
+.technology-others {
+  display: flex;
+  flex: 0.5;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: darkblue;
+  border-width: 0.325rem;
+  background-color: lightgrey;
+  margin: 1rem;
+}
+
+/* style for technology github */
+.technology-github {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: darkblue;
+  border-width: 0.325rem;
+  background-color: lightgrey;
+  padding: 0.025rem;
+  margin-bottom: 1rem;
+}
+
+/* style for technology github link */
+.technology-github-link {
+  text-decoration: none;
+  color: darkblue;
+}
+
+.technology-github-link {
+  color: blue;
+  text-decoration: none;
+}
+
+.technology-github-link:hover {
+  text-decoration: underline;
+}
+
+/* style for footer */
+footer {
+  background-color: lightgrey;
+  color: black;
+  text-align: left;
+  padding: 1rem;
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
