@@ -1,0 +1,35 @@
+main {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90rem;
+}
+
+.table {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+
+.column1title,
+.column2title {
+  font-weight: bold;
+  text-align: center;
+}
+
+.column1 {
+  float: left;
+  width: 50%;
+  background-color: red;
+}
+.column2 {
+  float: right;
+  width: 50%;
+  background-color: darkgreen;
+}
+.table:after {
+  content: "";
+  display: flex;
+  clear: both;
+}
