@@ -1,0 +1,29 @@
+main {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90rem;
+}
+
+main {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90rem;
+}
+
+.sendusfeedbacktitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  user-select: text;
+  padding-top: 2rem;
+  line-height: 0rem;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.sendusfeedbackcontent {
+  display: flex;
+  justify-content: space-evenly;
+  justify-content: center;
+  padding: 2rem;
+}

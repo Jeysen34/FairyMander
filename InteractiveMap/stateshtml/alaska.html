@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="eng">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>US Map</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/statescss/alaska.css" />
+  </head>
+  <body>
+    <header class="header">
+      <a href="/index.html"> </a>
+      <nav>
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>ALASKA</h1>
+
+      <form>
+        <input type="button" value="Go Back!" onclick="history.back()" />
+      </form>
+      <div class="table">
+        <div class="column1">
+          <div class="column1title">
+            <h2>Today</h2>
+          </div>
+          <iframe
+            src="/foliumMaps/alaska_map.html"
+            width="700"
+            height="550"
+          ></iframe>
+        </div>
+        <div class="column2">
+          <div class="column2title">
+            <h2>FairyMandered</h2>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
