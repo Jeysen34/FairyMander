@@ -3,6 +3,8 @@
 2. Install the requirements (for now, just pandas and geopandas) using this command in the TechDemo directory:
 
 `pip install -r requirements.txt`
+`pip install geopandas`
+`pip install geodatasets`
 
 You should be able to run the cells in the jupyter notebook, `demo2.ipynb` now.
 
