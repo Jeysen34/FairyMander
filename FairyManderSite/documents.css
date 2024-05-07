@@ -68,7 +68,7 @@ main {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  max-width: 100rem;
+  max-width: 120rem;
 }
 
 /* style for documentation title */
@@ -88,25 +88,30 @@ main {
 /* style for documentation */
 .documentation {
   display: flex;
-  justify-content: space-evenly;
-  padding: 2rem;
+  flex-wrap: block;
+  justify-content: center;
   border-radius: 1rem;
+  padding: 1rem;
   border-style: solid;
   border-color: darkblue;
   background-color: lightgrey;
   border-width: 0.325rem;
 }
 
+.documentation2 {
+  display: block;
+  text-align: center;
+  justify-content: space-evenly;
+}
 .documents-card {
   background-color: lightgrey;
   padding: 1rem;
   border-radius: 1rem;
   border-style: solid;
   border-color: red;
-  line-height: 0.625rem;
-  padding-bottom: 0.0625rem;
+  padding-bottom: 0.5rem;
   border-width: 0.325rem;
-  width: 10rem;
+  width: 9.5rem;
   margin: 2.5rem;
 }
 
@@ -125,7 +130,7 @@ main {
 .documents-front::after {
   content: "";
   height: 0.3rem;
-  width: 9rem;
+  width: 9.5rem;
   background: linear-gradient(40deg, red, darkblue);
   display: block;
   position: absolute;
@@ -154,9 +159,10 @@ main {
 /* style for presentation */
 .presentation {
   display: flex;
-  justify-content: space-evenly;
-  padding: 4rem;
+  flex-wrap: block;
+  justify-content: space-around;
   border-radius: 1rem;
+  padding: 1rem;
   border-style: solid;
   border-color: red;
   background-color: lightgrey;
@@ -169,10 +175,10 @@ main {
   border-radius: 1rem;
   border-style: solid;
   border-color: darkblue;
-  line-height: 0.625rem;
-  padding-bottom: 0.0625rem;
+  padding-bottom: 0.5rem;
   border-width: 0.325rem;
-  width: 10rem;
+  width: 9.5rem;
+  margin: 2.5rem;
 }
 
 /* style for nav bold hover */
@@ -187,7 +193,7 @@ main {
 .presentation-front::after {
   content: "";
   height: 0.3rem;
-  width: 10rem;
+  width: 9.5rem;
   background: linear-gradient(40deg, red, darkblue);
   display: block;
   position: absolute;
@@ -216,16 +222,13 @@ main {
 /* style for videos */
 .videos {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: column;
-  padding: 4rem;
-  font-size: large;
+  flex-wrap: block;
+  justify-content: center;
   border-radius: 1rem;
+  padding: 1rem;
   border-style: solid;
   border-color: darkblue;
   background-color: lightgrey;
-  margin-bottom: 4rem;
   border-width: 0.325rem;
 }
 
@@ -235,11 +238,10 @@ main {
   border-radius: 1rem;
   border-style: solid;
   border-color: red;
-  line-height: 0.625rem;
-  text-align: center;
-  width: 10rem;
-  padding-bottom: 0.0625rem;
+  padding-bottom: 0.5rem;
   border-width: 0.325rem;
+  width: 9.5rem;
+  margin: 2.5rem;
 }
 
 /* style for videos bold hover */
@@ -254,7 +256,7 @@ main {
 .videos-front::after {
   content: "";
   height: 0.3rem;
-  width: 10rem;
+  width: 9.5rem;
   background: linear-gradient(40deg, red, darkblue);
   display: block;
   position: absolute;
@@ -263,6 +265,70 @@ main {
 }
 
 .videos-front:hover::after {
+  opacity: 1;
+}
+
+/* style for other title */
+.other-title h1 {
+  width: 100%;
+  text-align: center;
+  border-bottom: 0.5rem solid red;
+  line-height: 0.5rem;
+  padding-top: 3rem;
+}
+
+.other-title h1 span {
+  background: white;
+  padding: 0 1rem;
+}
+
+/* style for other */
+.other {
+  display: flex;
+  flex-wrap: block;
+  justify-content: center;
+  border-radius: 1rem;
+  padding: 1rem;
+  border-style: solid;
+  border-color: red;
+  background-color: lightgrey;
+  border-width: 0.325rem;
+  margin-bottom: 3rem;
+}
+
+.other-card {
+  background-color: lightgrey;
+  padding: 1rem;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: darkblue;
+  padding-bottom: 0.5rem;
+  border-width: 0.325rem;
+  width: 9.5rem;
+  margin: 2.5rem;
+}
+
+/* style for other bold hover */
+.other-front:hover {
+  font-weight: bold;
+}
+/* style for other underline hover */
+.other-front::before {
+  color: lightgrey;
+}
+
+.other-front::after {
+  content: "";
+  height: 0.3rem;
+  width: 9.5rem;
+  background: linear-gradient(40deg, red, darkblue);
+  display: block;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.other-front:hover::after {
   opacity: 1;
 }
 
