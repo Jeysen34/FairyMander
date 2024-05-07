@@ -67,7 +67,7 @@ main {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
-  max-width: 100rem;
+  max-width: 120rem;
 }
 
 /* style for project schedule title */
@@ -78,6 +78,7 @@ main {
   line-height: 0.5rem;
   padding-top: 8.5rem;
 }
+
 .project-schedule-title h1 span {
   background: white;
   padding: 0 1rem;
@@ -107,6 +108,5 @@ footer {
   padding: 1rem;
   position: absolute;
   left: 0;
-  bottom: 0;
   width: 100%;
 }
