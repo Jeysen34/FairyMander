@@ -10,7 +10,7 @@ The Redistricting Data Hub purchased this Voter File from L2, a national Voter F
 The fields below were pulled from the L2 Voter File, dated 9/27/2022. 
 To see more detailed field descriptions, please view the attached data dictionary provided by L2. 
 
-geoid20   		15-digit Census Block geoid corresponding to 2020 Census Blocks, based on L2 geo-referencing of individual voter addresses
+tract_num   	Census Tract geoid corresponding to 2020 Census Blocks, based on L2 geo-referencing of individual voter addresses
 total_reg 		Count of total registered voters in the Census Block, as geo-referenced by L2, on the 9/27/2022 L2 Voter File
 age_18_19 		Count of voters between the age of 18 and 19, on the 9/27/2022 L2 Voter File
 age_20_24 		Count of voters between the age of 20 and 24, on the 9/27/2022 L2 Voter File
