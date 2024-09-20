@@ -1,11 +1,20 @@
 # Before you start
-1. Make sure you have python installed. If you're not sure which version, I reccomend at least 3.11.9
-2. Install the requirements (for now, just pandas and geopandas) using this command in the TechDemo directory:
+1. Make sure you have python installed. FairyMander uses python 3.11 or above
+2. Create a virtual environment
 
-`pip install -r requirements.txt`\
-`pip install geopandas`\
-`pip install geodatasets`
+In VSCode:
+- Press `Ctrl-Shift-P`
+- Select `Python: Create Environment`
+- Create virtual environment in 3.11 with the Fairymander requirements.txt
 
-You should be able to run the cells in the jupyter notebook, `demo2.ipynb` now.
+Using python command line:
+`python3 -m venv .venv`
 
-Let me know if you have any questions!
+You can now enter the virtual environment using jupyter notebook and selecting it
+
+You can also activate it via command line...
+- Linux + Mac: `source .venv/Scripts/activate`
+- Windows Command Prompt: `call .venv/Scripts/activate`
+
+# Adding a package
+If you want to add a package, put it in requirement.txt with the name and version using the same format as the packages listed there.
