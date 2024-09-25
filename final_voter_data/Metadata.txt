@@ -1,0 +1,95 @@
+L2 Voter File Select Variables for SD, aggregated to the 2020 Census Block level. 
+
+## Redistricting Data Hub (RDH) Retrieval Date
+9/27/2022
+
+## Sources
+The Redistricting Data Hub purchased this Voter File from L2, a national Voter File vendor: https://l2-data.com/
+
+## Fields
+The fields below were pulled from the L2 Voter File, dated 9/27/2022. 
+To see more detailed field descriptions, please view the attached data dictionary provided by L2. 
+
+tract_num   	Census Tract geoid corresponding to 2020 Census Blocks, based on L2 geo-referencing of individual voter addresses
+total_reg 		Count of total registered voters in the Census Block, as geo-referenced by L2, on the 9/27/2022 L2 Voter File
+age_18_19 		Count of voters between the age of 18 and 19, on the 9/27/2022 L2 Voter File
+age_20_24 		Count of voters between the age of 20 and 24, on the 9/27/2022 L2 Voter File
+age_25_29 		Count of voters between the age of 25 and 29, on the 9/27/2022 L2 Voter File
+age_30_34 		Count of voters between the age of 30 and 34, on the 9/27/2022 L2 Voter File
+age_35_44 		Count of voters between the age of 35 and 44, on the 9/27/2022 L2 Voter File
+age_45_54 		Count of voters between the age of 45 and 54, on the 9/27/2022 L2 Voter File
+age_55_64 		Count of voters between the age of 55 and 64, on the 9/27/2022 L2 Voter File
+age_65_74 		Count of voters between the age of 65 and 74, on the 9/27/2022 L2 Voter File
+age_75_84 		Count of voters between the age of 75 and 84, on the 9/27/2022 L2 Voter File
+age_85over		Count of voters over the age of 85, on the 9/27/2022 L2 Voter File
+party_rep 		Count of voters registered with the following party on the L2 Voter File: Republican *
+party_dem 		Count of voters registered with the following party on the L2 Voter File: Democratic *
+party_rin 		Count of voters registered with the following party on the L2 Voter File: Registered Independent *
+party_npp 		Count of voters registered with the following party on the L2 Voter File: Non-Partisan *
+party_lib 		Count of voters registered with the following party on the L2 Voter File: Libertarian *
+party_cnt 		Count of voters registered with the following party on the L2 Voter File: Constitution *
+party_grn 		Count of voters registered with the following party on the L2 Voter File: Green *
+party_con 		Count of voters registered with the following party on the L2 Voter File: Conservative *
+party_oth 		Count of voters registered with another party, not listed above, on the L2 Voter File
+party_unk 		Count of voters with unknown (null) party affiliation on the L2 Voter File
+eth1_eur  		Count of voters in the following broad ethnicity category, defined by L2: European
+eth1_hisp 		Count of voters in the following broad ethnicity category, defined by L2: Hispanic and Portuguese
+eth1_aa   		Count of voters in the following broad ethnicity category, defined by L2: Likely African-American
+eth1_esa  		Count of voters in the following broad ethnicity category, defined by L2: East and South Asian
+eth1_oth  		Count of voters in the following broad ethnicity category, defined by L2: Other
+eth1_unk  		Count of voters with unknown (null) broad ethnicity category
+eth2_euro 		Count of voters in the following narrow ethnicity category, defined by L2: Summed European narrow ethnicities (see notes for what is included) **
+eth2_64   		Count of voters in the following narrow ethnicity category, defined by L2: Hispanic **
+eth2_81   		Count of voters in the following narrow ethnicity category, defined by L2: Native American **
+eth2_30   		Count of voters in the following narrow ethnicity category, defined by L2: Arab **
+eth2_10   		Count of voters in the following narrow ethnicity category, defined by L2: Chinese **
+eth2_93   		Count of voters in the following narrow ethnicity category, defined by L2: Likely Af-Am (Modeled) **
+eth2_34   		Count of voters in the following narrow ethnicity category, defined by L2: Russian (omitting former Soviet States) **
+eth2_23   		Count of voters in the following narrow ethnicity category, defined by L2: Indian/Hindu **
+eth2_unk  		Count of voters with unknown (null) narrow ethnicity category
+eth3_wsr  		Count of voters in the following state-reported ethnicity category, defined by L2: White Self Reported
+eth3_hisp 		Count of voters in the following state-reported ethnicity category, defined by L2: Hispanic
+eth3_oth  		Count of voters in the following state-reported ethnicity category, defined by L2: Other Undefined Race
+eth3_asr  		Count of voters in the following state-reported ethnicity category, defined by L2: African or Af-Am Self Reported
+eth3_esa  		Count of voters in the following state-reported ethnicity category, defined by L2: East Asian
+eth3_nsr  		Count of voters in the following state-reported ethnicity category, defined by L2: Native American (self reported)
+eth3_unk  		Count of voters with unknown (null) state-reported ethnicity category
+s20220901 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: special_2022_09_01
+s20220830 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: special_2022_08_30
+s20220712 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: special_2022_07_12
+p20220607 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: primary_2022_06_07
+s20220308 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: special_2022_03_08
+s20211005 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: special_2021_10_05
+s20210928 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: special_2021_09_28
+g20201103 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: general_2020_11_03
+p20200602 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: primary_2020_06_02
+pp20200602		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: presidential_primary_2020_06_02
+g20181106 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: general_2018_11_06
+p20180605 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: primary_2018_06_05
+g20161108 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: general_2016_11_08
+p20160607 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: primary_2016_06_07
+pp20160607		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: presidential_primary_2016_06_07
+g20141104 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: general_2014_11_04
+p20140603 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: primary_2014_06_03
+g20121106 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: general_2012_11_06
+p20120605 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: primary_2012_06_05
+pp20120605		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: presidential_primary_2012_06_05
+g20101102 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: general_2010_11_02
+p20100608 		Count of voters who are registered as of the 9/27/2022 L2 Voter File who voted in the following election: primary_2010_06_08
+
+## Processing
+L2 assigns each voter to a 2010 Census Block on their Voter File. 
+L2 provided the RDH with a file that has each individual and their corresponding 2020 Census Block, dated 9/27/2022. 
+The RDH joined the L2 Voter File to this 2020 Census Block assignment file. 
+The RDH then aggregated the individual level Voter File to the Census Block level. 
+The fields were renamed to fit character length requirements (under 10 chars) for joining to a shapefile. 
+Processing was completed using SQL. 
+The RDH cannot certify the accuracy of any of the information contained within this file. 
+
+## Additional Notes
+* RDH is providing aggregates of the top 8 parties in the state. 
+
+** For the narrow ethnicity categories, RDH is providing an aggregate of all ethnicities that have more than 1000 individuals state-wide. L2 ethnicity categories use modeling techniques to infer an individual's ethnicity. Please see the attached PDF for  more information about L2's ethnicity fields. European includes the following narrow-categories, that are not broken out on this file: 
+Austrian, Basque, Belgian, Bulgarian, Czech, Danish, Dutch (Netherlands), English/Welsh, Estonian, Finnish, French, German, Greek, Hungarian, Icelandic, Irish, Italian, Latvian, Lithuanian, Luxembourgian, Maltese, Moldavian, Norwegian, Polish, Romanian, Scots, Slovakian, Slovenian, Swedish, Swiss
+
+Please contact info@redistrictingdatahub.org for more information.
