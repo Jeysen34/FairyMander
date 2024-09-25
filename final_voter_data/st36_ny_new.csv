@@ -1,4 +1,4 @@
-FULLCODE,total_reg,party_dem,party_npp,party_rep,party_grn,party_lib,party_oth,party_unk,eth1_eur,eth1_hisp,eth1_aa,eth1_esa,eth1_oth,eth1_unk
+GEOID20,total_reg,party_dem,party_npp,party_rep,party_grn,party_lib,party_oth,party_unk,eth1_eur,eth1_hisp,eth1_aa,eth1_esa,eth1_oth,eth1_unk
 36059300100,3570,796,1241,1378,3,3,0,0,651,42,5,191,1761,920
 36059300300,2893,966,988,819,2,4,0,0,717,182,27,248,931,788
 36059300400,4037,1451,1345,1107,3,2,0,0,1069,183,8,453,1219,1105

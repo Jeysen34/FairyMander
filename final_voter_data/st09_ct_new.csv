@@ -1,4 +1,4 @@
-FULLCODE,total_reg,party_npp,party_dem,party_rep,party_lib,party_grn,party_oth,party_unk,eth1_eur,eth1_hisp,eth1_aa,eth1_esa,eth1_oth,eth1_unk
+GEOID20,total_reg,party_npp,party_dem,party_rep,party_lib,party_grn,party_oth,party_unk,eth1_eur,eth1_hisp,eth1_aa,eth1_esa,eth1_oth,eth1_unk
 09007541100,1407,567,680,130,5,2,0,0,841,211,202,25,26,102
 09007541200,3422,1439,1437,491,8,2,0,0,2270,340,217,145,122,328
 09007541301,1111,473,443,165,1,1,0,0,790,116,30,24,25,126

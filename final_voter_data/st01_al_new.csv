@@ -1,4 +1,4 @@
-FULLCODE,total_reg,party_rep,party_dem,party_npp,party_oth,party_unk,eth1_eur,eth1_hisp,eth1_aa,eth1_esa,eth1_oth,eth1_unk
+GEOID20,total_reg,party_rep,party_dem,party_npp,party_oth,party_unk,eth1_eur,eth1_hisp,eth1_aa,eth1_esa,eth1_oth,eth1_unk
 01039961600,3137,2655,293,189,0,0,2768,27,114,23,14,191
 01039961700,2796,2246,407,143,0,0,2331,21,262,15,18,149
 01039961800,2250,1476,663,111,0,0,1592,32,524,10,11,81
