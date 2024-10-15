@@ -11,12 +11,15 @@ init generator
            the amount of time the algorithm needs to run.
            It is not recommended to exceed 10,000 steps.
  4th parameter: Number of maps to display
+ 5th parameter: Option to save generated districts to a shapefile for
+                later use. Enter "yes" to save "no" to not save
 
 Example:
   Generate district maps of Arizona with a deviation of 0.008 and a step size of 1000
-  my_generator = DistrictGenerator("az", 0.008, 1000)
+  and save district maps to a shapefile
+  my_generator = DistrictGenerator("az", 0.008, 10000, 3, "yes")
 '''
-my_generator = DistrictGenerator("az", 0.008, 1000, 3)
+my_generator = DistrictGenerator("az", 0.008, 1000, 3, "yes")
 
 # generate districts
 districts = my_generator.run()

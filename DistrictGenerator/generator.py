@@ -22,13 +22,15 @@ from multiprocessing import Pool
 
 
 class DistrictGenerator:
-    def __init__(self, prefix, deviation, steps, numMaps):
+    def __init__(self, prefix, deviation, steps, numMaps, toShpFileFlag):
+        
         # initialize with user input
         self.prefix = prefix
         self.steps = steps
         self.numMaps = numMaps
         #self.numDisplayMaps = numDisplayMaps
         self.deviation = deviation
+        self.toShpFileFlag = toShpFileFlag
         self.numDistricts = {
             'al': 7, 'az': 9, 'ar': 4,
             'ca': 52, 'co': 8, 'ct': 5,
@@ -135,6 +137,7 @@ class DistrictGenerator:
     # fairness tests temp stub
 
     def run(self):
+        index = 0
         print("\ngetting state GeoDataFrame")
         state_gdf = self.get_state_gdf()
         if self.prefix == 'ca':
@@ -165,3 +168,9 @@ class DistrictGenerator:
             state_gdf.plot(column='District', ax=ax, legend=True, cmap="rainbow")
             plt.title("District Assignment from Markov Chain ReCom")
             plt.show()
+
+            # save the results as a shapefile if the user specified to
+            if self.toShpFileFlag == "yes":
+                state_gdf.to_file(f"./districtShpFiles/{self.prefix}_districts{index}.shp")
+                index += 1
+            
