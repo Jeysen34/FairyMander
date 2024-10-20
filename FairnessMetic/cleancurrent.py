@@ -65,4 +65,5 @@ def get_curr_district_file(prefix):
 
     return res_gdf
 
-print(get_curr_district_file('az').head())
+#print(get_curr_district_file('az').head())
+#print(get_curr_district_file('az').columns)
