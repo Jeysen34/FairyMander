@@ -9,12 +9,16 @@ from shapely.geometry import Polygon, LineString, Point
 from math import pi
 
 class calcMetrics:
+    """The reock score finds out if the district is compact or not compact. 
+    To define if is compact it will be 1. If it is 0 that means that is not compact.
+    To determine the compsite score. Each distict will be meansured by looking at which one is closer to 100%
+    """
     #function of the reock score
     def calcRecockScore(testMap):
         
         #create the crs for the math
         #used the centeral Arizona id
-        # We are going to the use the epsg of the centeral of the state
+            # We are going to the use the epsg of the centeral of the state
         testMap.to_crs(epsg=26949 , inplace=True)
         # find the geomtry area
         testMap['area'] = testMap['geometry'].area
@@ -29,6 +33,11 @@ class calcMetrics:
        
 
     def calcPolsyPopper(testMap):
+        """
+        This function calcuates the compacts of the distict. It looks at the perimeter and the area of the distict
+        Metric 0 - not compact , 1 - compact
+        This will be dertmined by looking at the result of the test. One then will determine if it compact if it close to 1
+        """
        
         #Polsby-Popper (4pi * A)/P2
         #A is the area of the district.
@@ -45,7 +54,13 @@ class calcMetrics:
         
     
     def calEfficiencyGap(voteMap):
-        """ have a check, that finds a which party disticts is higher. which number is hight
+        """ This function will show which party has more favor when it comes to gerrymander.
+        Measures propprtionality, this test will look at and see which party is closer to 0.
+        If efficiency Gap is postive(+): it means that Party A has gained a advantage through the distict line in there favor. 
+        The larger the postive number, the greater the advantage the party
+        If efficiency Gap is negaive(-): it means that the that party B benifts from the process. 
+
+       
         #Or take the abst values 
         # (wasted votes for party A - wasted votes for party B) / total votes
         It can  negative a postive as return, you can get a postive or 
@@ -70,6 +85,8 @@ class calcMetrics:
    
 
     def popluationTest(testMap):
+        """ This test is just a test to make sure that each district has around the same popluation
+        """
         #popluation = state population / number of districts
         #C_TOT22	
         #testMap['TotalPopulation'] = testMap.groupby('C_TOT22')
@@ -86,6 +103,10 @@ class calcMetrics:
         #This is the popluation in each distict that each distict should have
         print("Popluation of each distict should be around: ", popluationInt)
     def meanMedianScore(testMap):
+        """Foucus on how the distribution of district vote-shares affects potential seat outcomes,
+        calculates the difference between the median and mean vote-share across all districts for one party.
+        This looks at which party will have to win votes to see which party is in favor. 
+        """
         # mean average party share acrreos all districts
        
        
@@ -102,104 +123,107 @@ class calcMetrics:
         
         # to find the meanMedian: take the mean - median
         testMap['meanMedian'] = testMap['MeanTest'] - testMap['Median']
-        partyGraph = testMap.groupby('District')[['meanMedian']]
-    
-        print(partyGraph.first())
+       
        
     def lobsidedMagrinScore(testMap):
-        totalMagrinA = 0
-        totalMagrinB = 0
-        indexA = 0
-        indexB = 0
+        """
+        This function will determine which party is packed into a district, and will
+        see if the party is winning on more distrcist with lower margin vots. 
+        """
+        #print out the Lobsided Margin title
+        print("Lobsided Margin Score:")
+        #set up the varibles 
+        totalMagrinRep = 0
+        totalMagrinDem = 0
+        totalMagrinNpp = 0
+        totalMagrinGrn = 0
+        totalMagrinLib = 0
+        totalMagrinOth= 0
+        indexRep= 0
+        indexDem = 0
+        indexNpp= 0
+        indexGrn = 0
+        indexlib = 0
+        indexOth = 0
         # We need to findt the score of percent of each votes
-        testMap['PercentA'] = (testMap['party_rep'] / testMap['total_reg'] *100)
-        testMap['PercentB'] = (testMap['party_dem'] / testMap['total_reg'] *100)
-        testMap['PercentC'] = (testMap['party_npp'] / testMap['total_reg'] *100)
-        testMap['PercentD'] = (testMap['party_lib'] / testMap['total_reg'] *100)
-        testMap['PercentE'] = (testMap['party_grn'] / testMap['total_reg'] *100)
-        testMap['PercentF'] = (testMap['party_oth'] / testMap['total_reg'] *100)
+        testMap['RepParty'] = (testMap['party_rep'] / testMap['total_reg'] *100)
+        testMap['DemParty'] = (testMap['party_dem'] / testMap['total_reg'] *100)
+        testMap['NppParty'] = (testMap['party_npp'] / testMap['total_reg'] *100)
+        testMap['LibParty'] = (testMap['party_lib'] / testMap['total_reg'] *100)
+        testMap['GrnParty'] = (testMap['party_grn'] / testMap['total_reg'] *100)
+        testMap['OthParty'] = (testMap['party_oth'] / testMap['total_reg'] *100)
 
-        partyGraph = testMap.groupby('District')[['PercentA','PercentB','PercentC','PercentD','PercentE','PercentF']] 
+        partyGraph = testMap.groupby('District')[['RepParty','DemParty','NppParty','LibParty','GrnParty','OthParty']] 
         for index, row in partyGraph.first().iterrows():  # Using .first() to get the first row of each group
             # Store the percentages in a list for comparison
-            percentages = [row['PercentA'], row['PercentB'], row['PercentC'], row['PercentD'], row['PercentE'], row['PercentF']]
-            parties = ['PercentA', 'PercentB', 'PercentC', 'PercentD', 'PercentE', 'PercentF']
+            percentages = [row['RepParty'], row['DemParty'], row['NppParty'], row['LibParty'], row['GrnParty'], row['OthParty']]
+            parties = ['RepParty', 'DemParty', 'NppParty', 'LibParty', 'GrnParty', 'OthParty']
             
             # Find the maximum percentage and corresponding party
             max_value = max(percentages)
             max_index = percentages.index(max_value)
             max_party = parties[max_index]
-           
-            if max_party == 'PercentA':
-                totalMagrinA += max_value
-                indexA+= 1
-            elif max_party == 'PercentB':
-                totalMagrinB += max_value
-                indexB += 1   
+           # look for the percent of the party. It looks for the highest out of the row,
+           # and count it to an index
+            if max_party == 'RepParty':
+                totalMagrinRep += max_value
+                indexRep+= 1
+            elif max_party == 'DemParty':
+                totalMagrinDem += max_value
+                indexDem += 1   
+            elif max_party == 'NppParty:':
+                totalMagrinNpp += max_value
+                indexNpp += 1
+            elif max_party == 'LibParty':
+                totalMagrinLib += max_value
+                indexlib += 1
+            elif max_value == 'GrnParty':
+                totalMagrinGrn += max_value
+                indexGrn += 1
+            elif max_value == 'OthParty':
+                totalMagrinOth += max_value
+                indexOth +=1
                 
                     
-        if indexA > 0:
-            percentTotalA = totalMagrinA / indexA
-            print("Percent A:",percentTotalA)   
+        if(indexRep > 0):
+            percentTotalRep = totalMagrinRep / indexRep
+            print("Republican Party Score",percentTotalRep) 
 
-        if indexB > 0:
-            percentTotalB = totalMagrinB/ indexB
-            
-            print("Percent B:",percentTotalB)   
+        if(indexDem > 0):
+             percentTotalDem = totalMagrinDem/ indexDem  
+             print("Democratic Party Score:",percentTotalDem) 
+        if(indexlib > 0):
+            percentTotalLib = totalMagrinLib/ indexlib
+            print("Liberal Party Score:", percentTotalLib)
+        if(indexNpp> 0):
+            percentTotalNpp = totalMagrinNpp / indexNpp
+            print("National People's Patry Score:", percentTotalNpp)
+        if(indexGrn > 0):
+            percentTotalGrn= totalMagrinGrn /indexGrn
+            print("Green Party Score:", percentTotalGrn)
+        if(indexOth > 0):
+            percentTotalOth = totalMagrinOth /indexOth
+            print("Other Party score:", percentTotalOth)
+
         
-        if (percentTotalA > percentTotalB):
-            lobsidedTest = percentTotalA - percentTotalB
-        elif(percentTotalB > percentTotalA):
-            lobsidedTest = percentTotalB - percentTotalA
+        if (percentTotalRep > percentTotalDem):
+            lobsidedTest = percentTotalRep - percentTotalDem
+            print("The Lobsided Margin Score: ",lobsidedTest)
+            print("This mean that Republican  party are packed into a few district. Which means the party wins by large margins. The Democratic party on the other hand, is winning substantially more districts with substantially lower vote margins.")
+        elif(percentTotalDem > percentTotalRep):
+            lobsidedTest = percentTotalDem - percentTotalRep
+
+            print("The Lobsided Margin Score: ",lobsidedTest)
+            print("This mean that Democratic party are packed into a few district. Which means the party wins by large margins. The Republican party on the other hand, is winning substantially more districts with substantially lower vote margins.")
         
-        print("The Lobsided Margin Score: ",lobsidedTest)
-        print("This mean that party",percentTotalB," supporters are packed into a few districts that it wins by large margins.")
-        print (percentTotalA," on the other hand, is winning substantially more districts with substantially lower vote margins.")
-        
-        print(partyGraph.first())
        
-
         
-
-    def compositeScore(testMap):
-
-        # ceate a score indes
-        score = 0
-        scoreGap = 0
-        scorePopper = 0
-        grouped = testMap.groupby('District')
-        
-        zero = grouped['ReockScore'].apply(lambda x: (x < 100).any())
-        for x in zero:
-            
-            if(x == False):
-                score = score + 1
-        
-
-        popperScore = grouped['PolsbyPopper'].apply(lambda x: (x < 100).any())
-        for scoreOfPop in popperScore:
-            if(scoreOfPop == False):
-                scorePopper = scorePopper +1
-        gapFilter = grouped['EfficiencyGap']
-       #print(gapFilter.first())
-        # trying to list throught the efficiency gap
-
-        
-
-        # NOTE: Consider using wieghted averge
-       
      
-
-        # With the voting data, use the reg parties
-        # use the mean- medium, and lobsided test
-        # comment 
-        # percent of the 
+       
 
         
-        print("Score of ReockScore:", score) 
-        print("Score of Efficiency Gap:", scoreGap)
-        print("Score of the Polsby Popper:", scorePopper)     
 
+       
     #def  mintioryMajor(testMap):
         #Majority rule means that the candidate or choice receiving more than 50% of all the votes is the winner.
         # we are going to convert it to see if rep or other partys have 50%
@@ -219,11 +243,6 @@ class calcMetrics:
        #I am not sure what we are doing minoty votes or popluation 
       
 
-    def printoutGraph(testMap):
-        #print out the findings
-        printGraph = testMap.groupby('District')[['ReockScore','PolsbyPopper','EfficiencyGap']]
-        print(printGraph.first())
-
     
 
 
@@ -233,14 +252,17 @@ filePath = "shapeFile/AZ/az_districts.shp"
 
 testMap = gpd.read_file(filePath) 
 
+
 efficiencyGapRule= calcMetrics.calEfficiencyGap(testMap)
 ReockScoreRule = calcMetrics.calcRecockScore(testMap)
 polsyPopperRule= calcMetrics.calcPolsyPopper(testMap)
-MetricsPrintOut= calcMetrics.printoutGraph(testMap)
 popluationRule= calcMetrics.popluationTest(testMap)
-compsiteRule = calcMetrics.compositeScore(testMap)
+
 #TestMajorMintory = calcMetrics.mintioryMajor(testMap)
 TestMeanMedian = calcMetrics.meanMedianScore(testMap)
+
+printGraph = testMap.groupby('District')[['ReockScore','PolsbyPopper','EfficiencyGap', 'meanMedian']]
+print(printGraph.first())
 TestLobsided = calcMetrics.lobsidedMagrinScore(testMap)
 
 
