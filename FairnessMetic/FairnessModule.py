@@ -254,24 +254,41 @@ class calcMetrics:
         
 
        
-    def  mintioryMajor(testMap):
+    def  minorityMajority(testMap):
         # n = number of districts
-        numberDisictis = totalDistrict = len(testMap.groupby('District'))
-        # ai = population of group a 
+        n = len(testMap.groupby('District'))
+        # make list of demographic headers
+        demographics = ['eth1_eur', 'eth1_hisp', 'eth1_aa','eth1_esa', 'eth1_oth', 'eth1_unk']
+        # StatePop = total state population
+        statePop = 0
+        for demographic in demographics:
+            statePop += testMap[demographic].sum()
+        for demographic in demographics:
+            # d = dissimilarity index; set to 0 at beginning of each loop
+            d = 0
+            # A = total population of Demo in state
+            a = testMap(demographic).sum()
+            # B = total popluation of Everyone Else in state
+            b = statePop - a
+            for district in range(n):
+                # districtPop = total district population
+                districtPop = 0
+                for demographic in demographics:
+                    districtPop += testMap.groupby('District')[demographic][n]
+                # ai = population of group A in district
+                ai = testMap.groupby('District')[demographic][n]
+                # bi = popluation of Everyone Else in district
+                bi = districtPop - ai
+                # disimilarity index equation for district
+                d += abs((ai/a)-(bi/b))
+            # Complete dissimilarity equation by dividing by 2
+            d = d/2
+            # Print result for demo
+            print("Dissimilarity Index for demographic " + demographic + ": " + str(d))
+
+
         
-        # A = total population of group a in state
-        groupeEurPop = testMap['eth1_eur'].sum()
-        # bi = popluation of group b
-        # b total popluation of group B in state
-        gorupHispPop = testMap['eth1_hisp'].sum()
-        # 
-        groupLoop = testMap.groupby('District')[['eth1_eur']]
-        x = symbols('x')
-        z = groupLoop[1]
-        y = groupLoop[1]
-        # use the limit for the equation
-        dissimilarityIndex = (1/2) * limit((z/ groupeEurPop)-(y/gorupHispPop),x,0)
-        print(dissimilarityIndex)
+
      
     def printOutLine(testMap):
         #print out the data for each district
