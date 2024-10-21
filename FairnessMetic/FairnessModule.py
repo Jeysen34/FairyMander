@@ -134,10 +134,11 @@ class calcMetrics:
         # find the grn
         meanGroupGrn = testMap['party_grn'].mean()
         roundMeanGrn = round(meanGroupGrn)
-
-        # find the other party 
-        meanGroupOth = testMap['party_oth'].mean()
-        #round the number
+        
+        # find the other party - add all the other partys
+        testMap['meanGroupOth'] = testMap['party_oth'] + testMap['party_npp'] + testMap['party_grn'] + testMap['party_lib']
+        #round the number, find the mean of all the parties
+        meanGroupOth = testMap['meanGroupOth'].mean()
         roundMeanOth = round(meanGroupOth)
         
         
@@ -150,18 +151,8 @@ class calcMetrics:
         demMed = testMap['party_dem'].median()
         roundMedDem = round(demMed)
         
-         #finf the nnp
-        medNpp = testMap['party_npp'].median()
-        roundMedNpp = round(medNpp)
-
-        #find the lib
-        medGroupLib = testMap['party_lib'].median()
-        roundMedLib = round(medGroupLib)
-        # find the grn
-        medGroupGrn = testMap['party_grn'].median()
-        roundMedGrn = round(medGroupGrn)
         # find oth
-        othMed = testMap['party_oth'].median()
+        othMed = testMap['meanGroupOth'].median()
         roundMedOth = round(othMed)
         
         
@@ -172,18 +163,11 @@ class calcMetrics:
         meanMedianDem = roundMeanDem - roundMedDem
         # find the score oth
         meanMedianOth = roundMeanOth - roundMedOth
-        # find the lib
-        meanMedianLib = roundMeanLib - roundMedLib
-        # find the npp 
-        meanMedianNpp = roundMeanNpp - roundMedNpp
-        # find the grn
-        meanMedianGrn = roundMeanGrn - roundMedGrn
+     
 
         print("MeanMedian Republican Party Score:", meanMedianRep)
         print("MeanMedian Democratic Party Score:", meanMedianDem)
-        print("MeanMedian Liberal Patry Score:", meanMedianLib)
-        print("MeanMedian National People's Patry Score:", meanMedianNpp)
-        print("MeanMedian Green Party Score:", meanMedianGrn)
+   
         print("MeanMedian Other Party Score:", meanMedianOth)
         
 
@@ -213,16 +197,14 @@ class calcMetrics:
         # We need to findt the score of percent of each votes
         testMap['RepParty'] = (testMap['party_rep'] / testMap['total_reg'] *100)
         testMap['DemParty'] = (testMap['party_dem'] / testMap['total_reg'] *100)
-        testMap['NppParty'] = (testMap['party_npp'] / testMap['total_reg'] *100)
-        testMap['LibParty'] = (testMap['party_lib'] / testMap['total_reg'] *100)
-        testMap['GrnParty'] = (testMap['party_grn'] / testMap['total_reg'] *100)
-        testMap['OthParty'] = (testMap['party_oth'] / testMap['total_reg'] *100)
+        # find the score of all the other parties
+        testMap['OthParty'] = ((testMap['party_oth'] + testMap['party_grn'] + testMap['party_lib'] + testMap['party_npp'] )/ testMap['total_reg'] *100)
 
-        partyGraph = testMap.groupby('District')[['RepParty','DemParty','NppParty','LibParty','GrnParty','OthParty']] 
+        partyGraph = testMap.groupby('District')[['RepParty','DemParty','OthParty']] 
         for index, row in partyGraph.first().iterrows():  # Using .first() to get the first row of each group
             # Store the percentages in a list for comparison
-            percentages = [row['RepParty'], row['DemParty'], row['NppParty'], row['LibParty'], row['GrnParty'], row['OthParty']]
-            parties = ['RepParty', 'DemParty', 'NppParty', 'LibParty', 'GrnParty', 'OthParty']
+            percentages = [row['RepParty'], row['DemParty'], row['OthParty']]
+            parties = ['RepParty', 'DemParty', 'OthParty']
             
             # Find the maximum percentage and corresponding party
             max_value = max(percentages)
@@ -236,41 +218,24 @@ class calcMetrics:
             elif max_party == 'DemParty':
                 totalMagrinDem += max_value
                 indexDem += 1   
-            elif max_party == 'NppParty:':
-                totalMagrinNpp += max_value
-                indexNpp += 1
-            elif max_party == 'LibParty':
-                totalMagrinLib += max_value
-                indexlib += 1
-            elif max_value == 'GrnParty':
-                totalMagrinGrn += max_value
-                indexGrn += 1
             elif max_value == 'OthParty':
                 totalMagrinOth += max_value
                 indexOth +=1
                 
-                    
+        #check if index is creater than 0             
         if(indexRep > 0):
             percentTotalRep = totalMagrinRep / indexRep
             print("Republican Party Score",percentTotalRep) 
-
+        # look for the dem index
         if(indexDem > 0):
              percentTotalDem = totalMagrinDem/ indexDem  
              print("Democratic Party Score:",percentTotalDem) 
-        if(indexlib > 0):
-            percentTotalLib = totalMagrinLib/ indexlib
-            print("Liberal Party Score:", percentTotalLib)
-        if(indexNpp> 0):
-            percentTotalNpp = totalMagrinNpp / indexNpp
-            print("National People's Patry Score:", percentTotalNpp)
-        if(indexGrn > 0):
-            percentTotalGrn= totalMagrinGrn /indexGrn
-            print("Green Party Score:", percentTotalGrn)
+        # looking for the index of all the partys
         if(indexOth > 0):
             percentTotalOth = totalMagrinOth /indexOth
             print("Other Party score:", percentTotalOth)
 
-        
+        # check if the total bigger, than it prints the lobsided test
         if (percentTotalRep > percentTotalDem):
             lobsidedTest = percentTotalRep - percentTotalDem
             print("The Lobsided Margin Score: ",lobsidedTest)
