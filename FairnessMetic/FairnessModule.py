@@ -7,6 +7,7 @@ import numpy as np
 import pandas as pd
 from shapely.geometry import Polygon, LineString, Point
 from math import pi
+from sympy import *
 
 class calcMetrics:
     """The reock score finds out if the district is compact or not compact. 
@@ -48,8 +49,7 @@ class calcMetrics:
         testMap['area'] = testMap['geometry'].area
         # use the equation - convert it int 
         # then times it by 100
-        testMap['PolsbyPopper'] = ((((4*pi) * testMap['area'])
-                                   / testMap['Perimeter']**2) * 100)
+        testMap['PolsbyPopper'] = ((((4 * np.pi * testMap['area']) / (testMap['Perimeter'] ** 2))) * 100)
         
         
     
@@ -136,7 +136,7 @@ class calcMetrics:
         roundMeanGrn = round(meanGroupGrn)
         
         # find the other party - add all the other partys
-        testMap['meanGroupOth'] = testMap['party_oth'] + testMap['party_npp'] + testMap['party_grn'] + testMap['party_lib']
+        testMap['meanGroupOth'] = testMap['party_oth'] + testMap['party_npp'] + testMap['party_grn'] + testMap['party_lib'] + testMap['party_unk']
         #round the number, find the mean of all the parties
         meanGroupOth = testMap['meanGroupOth'].mean()
         roundMeanOth = round(meanGroupOth)
@@ -198,7 +198,7 @@ class calcMetrics:
         testMap['RepParty'] = (testMap['party_rep'] / testMap['total_reg'] *100)
         testMap['DemParty'] = (testMap['party_dem'] / testMap['total_reg'] *100)
         # find the score of all the other parties
-        testMap['OthParty'] = ((testMap['party_oth'] + testMap['party_grn'] + testMap['party_lib'] + testMap['party_npp'] )/ testMap['total_reg'] *100)
+        testMap['OthParty'] = ((testMap['party_oth'] + testMap['party_grn'] + testMap['party_lib'] + testMap['party_npp'] + testMap['party_unk'] )/ testMap['total_reg'] *100)
 
         partyGraph = testMap.groupby('District')[['RepParty','DemParty','OthParty']] 
         for index, row in partyGraph.first().iterrows():  # Using .first() to get the first row of each group
@@ -254,29 +254,30 @@ class calcMetrics:
         
 
        
-    #def  mintioryMajor(testMap):
-        #Majority rule means that the candidate or choice receiving more than 50% of all the votes is the winner.
-        # we are going to convert it to see if rep or other partys have 50%
-        # frist we need to know the score of register of the party into percent 
-      # demPercent =  testMap['party_dem'] / testMap['total_reg'] *100
-       #print(demPercent)
-       #repPerecent = testMap['party_rep'] / testMap['total_reg'] *100
-       #print(repPerecent)
-       #nppPerecent = testMap['party_npp'] / testMap['total_reg'] * 100
-       #libPerecent = testMap['party_lib'] / testMap['total_reg'] * 100
-       #grnPerecent = testMap['party_grn'] / testMap['total_reg'] * 100
-       #othPerecent = testMap['party_oth'] / testMap['total_reg'] * 100
-       #print(nppPerecent, libPerecent, grnPerecent,othPerecent)
-       # look through each of them to check if they have more than 50% 
-       # and if they have more than 50 the minoty win. 
-       #if the have less than 50% they have a mintoy
-       #I am not sure what we are doing minoty votes or popluation 
-      
+    def  mintioryMajor(testMap):
+        # n = number of districts
+        numberDisictis = totalDistrict = len(testMap.groupby('District'))
+        # ai = population of group a 
+        
+        # A = total population of group a in state
+        groupeEurPop = testMap['eth1_eur'].sum()
+        # bi = popluation of group b
+        # b total popluation of group B in state
+        gorupHispPop = testMap['eth1_hisp'].sum()
+        # 
+        groupLoop = testMap.groupby('District')[['eth1_eur']]
+        x = symbols('x')
+        z = groupLoop[1]
+        y = groupLoop[1]
+        # use the limit for the equation
+        dissimilarityIndex = (1/2) * limit((z/ groupeEurPop)-(y/gorupHispPop),x,0)
+        print(dissimilarityIndex)
+     
     def printOutLine(testMap):
         #print out the data for each district
         printGraph = testMap.groupby('District')[['ReockScore','PolsbyPopper', 'EfficiencyGap','C_TOT22']]
         print(printGraph.first())
-    
+        
 
 
 #grab the test files
@@ -291,7 +292,7 @@ ReockScoreRule = calcMetrics.calcRecockScore(testMap)
 polsyPopperRule= calcMetrics.calcPolsyPopper(testMap)
 
 
-#TestMajorMintory = calcMetrics.mintioryMajor(testMap)
+TestMajorMintory = calcMetrics.mintioryMajor(testMap)
 
 
 printOut = calcMetrics.printOutLine(testMap)
