@@ -17,7 +17,6 @@ class calcMetrics:
     """
     #function of the reock score
     def calcRecockScore(testMap):
-        
         #create the crs for the math
         #used the centeral Arizona id
             # We are going to the use the epsg of the centeral of the state
@@ -32,14 +31,13 @@ class calcMetrics:
         testMap['ReockScore'] = testMap['area'] / (testMap['MinBounds_Area'])
         #find the score and time it by 100%
         testMap['ReockScore'] = testMap['ReockScore']*100
-       
+
     def calcPolsyPopper(testMap):
         """
         This function calcuates the compacts of the distict. It looks at the perimeter and the area of the distict
         Metric 0 - not compact , 1 - compact
         This will be dertmined by looking at the result of the test. One then will determine if it compact if it close to 1
         """
-       
         #Polsby-Popper (4pi * A)/P2
         #A is the area of the district.
         # P is the perimeter of the district.
@@ -83,21 +81,20 @@ class calcMetrics:
         """ This test is just a test to make sure that each district has around the same popluation
         """
         #popluation = state population / number of districts
-        #C_TOT22	
+        #C_TOT22
         #testMap['TotalPopulation'] = testMap.groupby('C_TOT22')
-       
 
         #testing value, create an error so that make sure that it is a int
         testMap['C_TOT22'] = pd.to_numeric(testMap['C_TOT22'], errors='coerce')
         sumTotal= 0
         # group by district 
         groupedC = testMap.groupby('District')['C_TOT22']
-        
+
         # check for the each of the value and add them up
         for index, value in groupedC.first().items():
             if pd.notna(value):
                 sumTotal += value 
-            
+
          #find how many disticts are in each state
         totalDistrict = len(testMap.groupby('District'))
         # divide the total / total disticts
@@ -106,7 +103,7 @@ class calcMetrics:
         roundPopulationRule = round(PopulationRule)
         #print out the population
         print("Population Score:",roundPopulationRule)
-        
+
         #find how many disticts are in each state
         totalDistrict = len(testMap.groupby('District'))
     def meanMedianScore(testMap):
@@ -163,7 +160,7 @@ class calcMetrics:
     def lobsidedMagrinScore(testMap):
         """
         This function will determine which party is packed into a district, and will
-        see if the party is winning on more distrcist with lower margin vots. 
+        see if the party is winning on more distrcist with lower margin vots.
         """
         #print out the Lobsided Margin title
         print("Lobsided Margin Score:")
@@ -231,34 +228,14 @@ class calcMetrics:
         printGraph = testMap.groupby('District')[['ReockScore','PolsbyPopper', 'EfficiencyGap','C_TOT22']]
         print(printGraph.first())
 
-
-        
-     
-       
-
-        
-       
-          
-
-       
-   
-
-   
-     
 testMap = get_curr_district_file('az')
-
+print(testMap)
 
 ReockScoreRule = calcMetrics.calcRecockScore(testMap)
 polsyPopperRule= calcMetrics.calcPolsyPopper(testMap)
 efficiencyGapRule= calcMetrics.calEfficiencyGap(testMap)
 
-
-
 printOut = calcMetrics.printOutLine(testMap)
 popluationRule= calcMetrics.populationTest(testMap)
 TestMeanMedian = calcMetrics.meanMedianScore(testMap)
 TestLobsided = calcMetrics.lobsidedMagrinScore(testMap)
-
-
-
-
