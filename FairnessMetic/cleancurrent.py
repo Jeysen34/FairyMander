@@ -28,6 +28,26 @@ id_map = {
     'wy': '56'
 }
 
+
+epsg = {
+    'al': 26930, 'az': 26949, 'ar': 26952,
+    'ca': 3310, 'co': 26954, 'ct': 26956,
+    'de': 26957, 'fl': 3086, 'ga': 4722,
+    'id': 26969, 'il': 103270, 'in': 26973,
+    'ia': 7551, 'ks': 6922, 'la': 32199,
+    'me': 26983, 'md': 26985, 'ma': 26987,
+    'mi': 26989, 'mn': 26992, 'ms': 3814,
+    'mo': 26997, 'mt': 32100, 'ne': 32104,
+    'nv': 32108, 'nh': 32110, 'nj': 32111,
+    'nm': 32114, 'ny': 32118, 'nc': 32119,
+    'nd': 32120, 'oh': 32123, 'ok': 32124,
+    'or': 8328, 'pa': 32128, 'sc': 32033,
+    'sd': 32135, 'tn': 32136, 'tx': 32139,
+    'ut': 32043, 'vt': 32145, 'va': 3968,
+    'wa': 7582, 'wv': 32150, 'wi': 32153,
+    'wy': 32159
+}
+
 def get_curr_district_file(prefix):
     """
     The main function for this module. Gets the current district file for fairness evalaution by
@@ -62,8 +82,8 @@ def get_curr_district_file(prefix):
                             'Hispanic': 'eth1_hisp',
                             'Black': 'eth1_aa',
                             'Asian': 'eth1_esa'})
-    res_gdf = gpd.GeoDataFrame(res, geometry='geometry').set_index('District')
-
+    res_gdf = gpd.GeoDataFrame(res, geometry='geometry')
+    res_gdf.to_crs(epsg=epsg[prefix], inplace=True)
 
     return res_gdf
 

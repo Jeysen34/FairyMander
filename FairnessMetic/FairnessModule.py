@@ -3,10 +3,9 @@
 import geopandas as gpd
 import numpy as np
 import pandas as pd
-from shapely.geometry import Polygon, LineString, Point
-from cleancurrent import get_curr_district_file
 from math import pi, ceil
 from statistics import median
+import matplotlib.pyplot as plt
 
 
 eth_common_names = {
@@ -26,14 +25,19 @@ def get_metric_dict(test_map):
             'Avg Polsby-Popper': calc_avg_polsby_popper(test_map),
             'Avg Reock': calc_avg_reock(test_map),
             'Efficiency Gap': calc_efficiency_gap(test_map),
-            'Mean Median Differences': calc_mean_median_difference(test_map),
+            'Mean Median Difference': calc_mean_median_difference(test_map),
             'Lobsided Margin': calc_lobsided_margins(test_map),
             'Dissimilarity Indices': calc_dissimilarity_index(test_map)
     }
 
     return result_dict
 
-def full_analysis(test_map, verbose = False):
+def full_analysis(test_map, verbose = False, showMap = True):
+    if showMap:
+        fig, ax = plt.subplots(1, 1, figsize=(10, 10))
+        test_map.plot(column='District', ax=ax, legend=True, cmap="rainbow")
+        plt.title("District Map")
+        plt.show()
     print("Running Fairness Analysis")
     print("-------------------------")
     if verbose:
@@ -53,10 +57,8 @@ def full_analysis(test_map, verbose = False):
     print()
     if verbose:
         print("The Mean Median Difference is a district competitiveness measure. It is the difference between a party's average vote share and its median vote share across all districts")
-        print("A percent difference, with a higher difference indicating that results may be skewed in that party's favor")
-    mean_median_res = calc_mean_median_difference(test_map)
-    print(f"Mean Median Difference, Democrat: {mean_median_res['Democrat']}")
-    print(f"Mean Median Difference, Republican: {mean_median_res['Republican']}")
+        print("A percent difference, with a negative (-) value indicates a Democrat advantage, while a positive (+) value indicates a Republican advantage")
+    print(f"Mean Median Difference: {calc_mean_median_difference(test_map)}")
     print()
     if verbose:
         print("The Lobsided Margin test is a district competitiveness measure. It is the difference between the average percentages by which each party won in a district.")
@@ -72,7 +74,20 @@ def full_analysis(test_map, verbose = False):
     print()
 
 
-def compare_maps(map_one, map_two, verbose=False):
+def compare_maps(map_one, map_two, verbose=False, showMaps = True):
+    if showMaps:
+        fig, ax = plt.subplots(1, 2, figsize=(20, 10))
+
+        # Plot the first map
+        map_one.plot(column='District', ax=ax[0], legend=True, cmap="rainbow")
+        ax[0].set_title("District Map One")
+
+        # Plot the second map
+        map_two.plot(column='District', ax=ax[1], legend=True, cmap="rainbow")
+        ax[1].set_title("District Map Two")
+
+        plt.tight_layout()
+        plt.show()
     map_one_winning_metrics = []
     map_two_winning_metrics = []
     ties = []
@@ -129,29 +144,18 @@ def compare_maps(map_one, map_two, verbose=False):
     print()
     if verbose:
         print("The Mean Median Difference is a district competitiveness measure. It is the difference between a party's average vote share and its median vote share across all districts")
-        print("A percent difference, with a higher difference indicating that results may be skewed in that party's favor")
-    print(f"Mean Median Difference, Democrat, Map One: {map_one_metrics['Mean Median Differences']['Democrat']}")
-    print(f"Mean Median Difference, Republican, Map One: {map_one_metrics['Mean Median Differences']['Republican']}")
-    print(f"Mean Median Difference, Democrat, Map Two: {map_two_metrics['Mean Median Differences']['Democrat']}")
-    print(f"Mean Median Difference, Republican, Map Two: {map_two_metrics['Mean Median Differences']['Republican']}")
-    if map_one_metrics['Mean Median Differences']['Democrat'] < map_two_metrics['Mean Median Differences']['Democrat']:
-        print("Map One has a better Democrat Mean Median Difference")
-        map_one_winning_metrics.append('Mean Median Difference: Democrat')
-    elif map_one_metrics['Mean Median Differences']['Democrat'] > map_two_metrics['Mean Median Differences']['Democrat']:
-        print("Map Two has a better Democrat Mean Median Difference")
-        map_two_winning_metrics.append('Mean Median Difference: Democrat')
+        print("A percent difference, with a negative (-) value indicates a Democrat advantage, while a positive (+) value indicates a Republican advantage")
+    print(f"Mean Median Difference, Map One: {map_one_metrics['Mean Median Difference']}")
+    print(f"Mean Median Difference, Map Two: {map_two_metrics['Mean Median Difference']}")
+    if abs(map_one_metrics['Mean Median Difference']) < abs(map_two_metrics['Mean Median Difference']):
+        print("Map One has a better Mean Median Difference")
+        map_one_winning_metrics.append('Mean Median Difference')
+    elif abs(map_one_metrics['Mean Median Difference']) > abs(map_two_metrics['Mean Median Difference']):
+        print("Map Two has a better Mean Median Difference")
+        map_two_winning_metrics.append('Mean Median Difference')
     else:
-        print("Both maps have the same Democrat Mean Median Difference")
-        ties.append("Mean Median Difference, Democrat")
-    if map_one_metrics['Mean Median Differences']['Republican'] < map_two_metrics['Mean Median Differences']['Republican']:
-        print("Map One has a better Republican Mean Median Difference")
-        map_one_winning_metrics.append('Mean Median Difference: Republican')
-    elif map_one_metrics['Mean Median Differences']['Republican'] > map_two_metrics['Mean Median Differences']['Republican']:
-        map_two_winning_metrics.append('Mean Median Difference: Republican')
-        print("Map Two has a better Republican Mean Median Difference")
-    else:
-        print("Both maps have the same Republican Mean Median Difference")
-        ties.append("Mean Median Difference, Republican")
+        print("Both maps have the same Mean Median Difference")
+        ties.append("Mean Median Difference")
     print()
     if verbose:
         print("The Lobsided Margin test is a district competitiveness measure. It is the difference between the average percentages by which each party won in a district.")
@@ -213,10 +217,6 @@ def calc_avg_reock(test_map):
     The reock score finds out if the district is compact or not compact.
     The score ranges from 0-1, with values closer to 1 indicating compactness
     """
-    #create the crs for the math
-    #used the centeral Arizona id
-        # We are going to the use the epsg of the state's center
-    test_map.to_crs(epsg=26949, inplace=True)
 
     # get the number of districts, in this case the number of rows in the map
     num_districts = test_map.shape[0]
@@ -228,7 +228,7 @@ def calc_avg_reock(test_map):
     average_reock_score = 0
 
     # get the average reock score for each district
-    for district_num in range(1, num_districts + 1):
+    for district_num in range(0, num_districts):
         district_area = test_map.loc[district_num, 'geometry'].area
         min_bounding_circle_area = min_bounding_circles[district_num].area
         average_reock_score += district_area / min_bounding_circle_area
@@ -241,8 +241,6 @@ def calc_avg_polsby_popper(test_map):
     and the area of the distict
     The score ranges from 0-1, with values closer to 1 indicating compactness
     """
-    test_map.to_crs(epsg=26949, inplace=True)
-
     #Polsby-Popper (4pi * A)/P2
     #A is the area of the district.
     # P is the perimeter of the district.
@@ -254,7 +252,7 @@ def calc_avg_polsby_popper(test_map):
     # init average pp score
     avg_pp_score = 0
 
-    for district_num in range(1, num_districts + 1):
+    for district_num in range(num_districts):
         district_area = test_map.loc[district_num, 'geometry'].area
         district_perimeter = test_map.loc[district_num, 'geometry'].length
         avg_pp_score += (4 * np.pi) * (district_area / (district_perimeter ** 2))
@@ -322,19 +320,16 @@ def calc_mean_median_difference(test_map):
     This looks at which party will have to win votes to see which party is in favor. 
     """
     dem_percentages = []
-    rep_percentages = []
     total_votes = 0
 
     for _, district in test_map.iterrows():
         district_votes = district['party_rep'] + district['party_dem']
         total_votes += district_votes
         dem_percentages.append(district['party_dem'] / district_votes)
-        rep_percentages.append(district['party_rep'] / district_votes)
 
     dem_percentage_statewide = test_map['party_dem'].sum() / total_votes
-    rep_percentage_statewide = test_map['party_rep'].sum() / total_votes
 
-    return {'Democrat': 100 * abs(median(dem_percentages) - dem_percentage_statewide), 'Republican': 100 * abs(median(rep_percentages) - rep_percentage_statewide)}
+    return 100 * (dem_percentage_statewide - median(dem_percentages))
 
     # # mean average party share acrreos all districts
     # # find the rep
@@ -489,7 +484,7 @@ def calc_dissimilarity_index(test_map):
         tot_minority_pop = test_map[demographic].sum()
         dis_index = 0
 
-        for district_num in range(1, num_districts + 1):
+        for district_num in range(num_districts):
             district_white_pop = test_map.loc[district_num, 'eth1_eur']
             district_minority_pop = test_map.loc[district_num, demographic]
             dis_index += abs((district_minority_pop / tot_minority_pop) - (district_white_pop / tot_white_pop))
@@ -499,11 +494,11 @@ def calc_dissimilarity_index(test_map):
         dis_indices[demographic] = dis_index
     return dis_indices
 
-#grab the test files
-file_path = "shapeFile/AZ/az_districts.shp"
+# # Usage example
+# file_path = "shapeFile/AZ/az_districts.shp"
 
-test_map_ex = gpd.read_file(file_path)
-test_map_ex = test_map_ex.dissolve(by='District', aggfunc='sum')
-test_map_curr = get_curr_district_file('az')
-full_analysis(test_map_ex)
-compare_maps(test_map_ex, test_map_curr)
+# test_map_ex = gpd.read_file(file_path)
+# test_map_ex = test_map_ex.dissolve(by='District', aggfunc='sum')
+# test_map_curr = get_curr_district_file('az')
+# full_analysis(test_map_ex)
+# compare_maps(test_map_ex, test_map_curr)
