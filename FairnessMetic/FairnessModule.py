@@ -60,7 +60,7 @@ def full_analysis(test_map, verbose = False):
     print()
     if verbose:
         print("The Lobsided Margin test is a district competitiveness measure. It is the difference between the average percentages by which each party won in a district.")
-        print("A percent difference, where a negative (-) value indicates a Democrat advantage, where a positive (+) value indicates a Republican advantage")
+        print("A percent difference, where a negative (-) value indicates Republicans have been packed (i.e., a Democrat advantage), where a positive (+) value indicates Democrats have been packed (i.e., a Republican advantage")
     print(f"Lobsided Margin Score: {calc_lobsided_margins(test_map)}")
     print()
     if verbose:
@@ -155,7 +155,7 @@ def compare_maps(map_one, map_two, verbose=False):
     print()
     if verbose:
         print("The Lobsided Margin test is a district competitiveness measure. It is the difference between the average percentages by which each party won in a district.")
-        print("A percent difference, where a negative (-) value indicates a Democrat advantage, where a positive (+) value indicates a Republican advantage")
+        print("A percent difference, where a negative (-) value indicates Republicans have been packed (i.e., a Democrat advantage), where a positive (+) value indicates Democrats have been packed (i.e., a Republican advantage")
     print(f"Lobsided Margin Score, Map One: {map_one_metrics['Lobsided Margin']}")
     print(f"Lobsided Margin Score, Map Two: {map_two_metrics['Lobsided Margin']}")
     if abs(map_one_metrics['Lobsided Margin']) < abs(map_two_metrics['Lobsided Margin']):
@@ -408,7 +408,7 @@ def calc_lobsided_margins(test_map):
             rep_win_percents.append((district['party_rep'] / district_votes) * 100)
         else:
             dem_win_percents.append((district['party_dem'] / district_votes) * 100)
-    return (sum(rep_win_percents) / len(rep_win_percents)) - (sum(dem_win_percents) / len(dem_win_percents))
+    return  (sum(dem_win_percents) / len(dem_win_percents)) - (sum(rep_win_percents) / len(rep_win_percents))
 
 
     # #print out the Lobsided Margin title
