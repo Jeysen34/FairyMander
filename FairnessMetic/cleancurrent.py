@@ -51,6 +51,7 @@ def get_curr_district_file(prefix):
         res[column] = res[column].astype(int)
 
     res['total_reg'] = res['Dem'] + res['Rep'] + res['Oth']
+    res['eth1_oth'] = res['Native'] + res['Pacific']
 
     res = res.rename(columns={'ID': 'District',
                             'Total Pop': 'C_TOT22',
@@ -61,7 +62,8 @@ def get_curr_district_file(prefix):
                             'Hispanic': 'eth1_hisp',
                             'Black': 'eth1_aa',
                             'Asian': 'eth1_esa'})
-    res_gdf = gpd.GeoDataFrame(res, geometry='geometry')
+    res_gdf = gpd.GeoDataFrame(res, geometry='geometry').set_index('District')
+
 
     return res_gdf
 
