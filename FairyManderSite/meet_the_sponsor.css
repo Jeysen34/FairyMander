@@ -124,10 +124,15 @@ main {
   border-width: 0.325rem;
   overflow: hidden;
   position: relative;
+  height: 15rem;
+  width: 10rem;
 }
 
-img {
+.meet-sponsor-front img {
   border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
 }
 
 .meet-sponsor-info {
