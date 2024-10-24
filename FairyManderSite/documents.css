@@ -88,20 +88,14 @@ main {
 /* style for documentation */
 .documentation {
   display: flex;
-  flex-wrap: block;
-  justify-content: center;
+  flex-wrap: wrap;
   border-radius: 1rem;
+  justify-content: space-evenly;
   padding: 1rem;
   border-style: solid;
   border-color: darkblue;
   background-color: lightgrey;
   border-width: 0.325rem;
-}
-
-.documentation2 {
-  display: block;
-  text-align: center;
-  justify-content: space-evenly;
 }
 .documents-card {
   background-color: lightgrey;
@@ -112,7 +106,7 @@ main {
   padding-bottom: 0.5rem;
   border-width: 0.325rem;
   width: 9.5rem;
-  margin: 2.5rem;
+  margin: 1rem;
 }
 
 /* style for nav bold hover */
@@ -132,7 +126,8 @@ main {
   height: 0.3rem;
   width: 9.5rem;
   background: linear-gradient(40deg, red, darkblue);
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
   position: absolute;
   opacity: 0;
   pointer-events: none;
@@ -159,8 +154,8 @@ main {
 /* style for presentation */
 .presentation {
   display: flex;
-  flex-wrap: block;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   border-radius: 1rem;
   padding: 1rem;
   border-style: solid;
@@ -178,7 +173,7 @@ main {
   padding-bottom: 0.5rem;
   border-width: 0.325rem;
   width: 9.5rem;
-  margin: 2.5rem;
+  margin: 1rem;
 }
 
 /* style for nav bold hover */
@@ -222,8 +217,8 @@ main {
 /* style for videos */
 .videos {
   display: flex;
-  flex-wrap: block;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   border-radius: 1rem;
   padding: 1rem;
   border-style: solid;
@@ -241,7 +236,7 @@ main {
   padding-bottom: 0.5rem;
   border-width: 0.325rem;
   width: 9.5rem;
-  margin: 2.5rem;
+  margin: 1rem;
 }
 
 /* style for videos bold hover */
@@ -258,7 +253,8 @@ main {
   height: 0.3rem;
   width: 9.5rem;
   background: linear-gradient(40deg, red, darkblue);
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
   position: absolute;
   opacity: 0;
   pointer-events: none;
@@ -285,8 +281,8 @@ main {
 /* style for other */
 .other {
   display: flex;
-  flex-wrap: block;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   border-radius: 1rem;
   padding: 1rem;
   border-style: solid;
@@ -305,7 +301,7 @@ main {
   padding-bottom: 0.5rem;
   border-width: 0.325rem;
   width: 9.5rem;
-  margin: 2.5rem;
+  margin: 1rem;
 }
 
 /* style for other bold hover */
@@ -322,7 +318,7 @@ main {
   height: 0.3rem;
   width: 9.5rem;
   background: linear-gradient(40deg, red, darkblue);
-  display: block;
+  display: flex;
   position: absolute;
   opacity: 0;
   pointer-events: none;

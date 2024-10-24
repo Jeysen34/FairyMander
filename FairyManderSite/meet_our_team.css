@@ -88,7 +88,7 @@ main {
 /* style for meet-team */
 .meet-team {
   display: flex;
-  flex-wrap: block;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
   border-radius: 1rem;
@@ -130,8 +130,18 @@ main {
   line-height: 0.2rem;
 }
 
-img {
+.meet-team-front img {
   border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+}
+
+.meet-mentor-front img {
+  border-radius: 50%;
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
 }
 
 .meet-mentor-title h1 {
@@ -150,28 +160,36 @@ img {
 /* style for meet mentor */
 .meet-mentor {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 2rem;
   border-radius: 1rem;
   padding: 2rem;
   border-style: solid;
   border-color: red;
   background-color: lightgrey;
   border-width: 0.325rem;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 120rem;
   margin-bottom: 3rem;
 }
 
 .meet-mentor-info {
   align-items: center;
+  line-height: 1.2rem;
 }
 
-.meet-mentor-info h2 {
-  line-height: 0.5rem;
+.meet-mentor-title {
+  text-align: center;
+  line-height: 0%;
 }
 
 /* style for meet-mentor-card */
 .meet-mentor-card {
   background-color: lightgrey;
-  padding: 1.5rem;
+  padding: 1rem; /* 1rem */
   border-radius: 1rem;
   border-style: solid;
   border-color: darkblue;
@@ -179,7 +197,7 @@ img {
   overflow: hidden;
   position: relative;
   height: 15rem;
-  width: 12rem;
+  width: 10rem;
 }
 
 /* style for footer */
