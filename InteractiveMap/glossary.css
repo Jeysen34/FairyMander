@@ -1,0 +1,61 @@
+.glossaryHeader {
+  background-color: lightgrey;
+  text-align: center;
+  padding: 3.5rem;
+}
+
+.glossaryContainer {
+  padding-bottom: 10rem;
+}
+
+table {
+  border-collapse: collapse;
+  margin: auto;
+  width: 100%;
+}
+
+th {
+  border: 0.05rem solid black;
+  text-align: center;
+  padding: 2rem;
+}
+
+th:nth-child(1) {
+  width: 20%;
+}
+
+caption {
+  background-color: lightgrey;
+}
+
+td {
+  border: 0.05rem solid black;
+  text-align: center;
+  padding: 1rem;
+}
+
+tr:nth-child(even) {
+  background-color: lightblue;
+}
+
+caption {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#textInput {
+  background-image: url("/images/search-icon.png");
+  background-position: 0.25rem 0.4rem;
+  background-size: 10%;
+  background-repeat: no-repeat;
+  width: 20%;
+  font-size: 1rem;
+  padding: 0.75rem 1.25rem 0.75rem 2.5rem;
+  border: 0.1rem solid black;
+  border-radius: 1rem;
+  margin: 1rem 0;
+}
+
+.searchBar {
+  text-align: right;
+}

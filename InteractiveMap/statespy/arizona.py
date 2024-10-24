@@ -2,7 +2,7 @@
 import folium
 
 # Create a map centered around Arizona
-map_arizona = folium.Map(location=[33.4484, -112.0740], zoom_start=4)
+map_arizona = folium.Map(location=[34.4484, -112.0740], zoom_start=6)
 
 # Add a marker at a specific location
 folium.Marker(

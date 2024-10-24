@@ -4,13 +4,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE-edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>US Map</title>
+    <title>About | FairyMander</title>
+    <link rel="icon" href="/images/logo.png" type="image" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="about.css" />
   </head>
   <body>
     <header class="header">
-      <a href="index.html"> </a>
+      <a href="index.html">
+        <div class="logo">
+          <img src="/images/logo.png" alt="logo" height="80" width="80" />
+        </div>
+      </a>
       <nav>
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -27,27 +32,147 @@
                   href="https://ceias.nau.edu/capstone/projects/CS/2024/FairyMander_S24/"
                   >Visit Capstone's website</a
                 >
+                <a
+                  target="_blank"
+                  href="https://www.ceias.nau.edu/cs/CS_Capstone/Projects/S24/BeroB_VotingDistricts_v01.pdf"
+                  >Inital Project Proposal</a
+                >
+                <a
+                  target="_blank"
+                  href="https://github.com/Jeysen34/FairyMander"
+                  >GitHub Repository</a
+                >
+                <a href="/glossary.html">Glossary</a>
               </li>
             </div>
           </div>
         </ul>
       </nav>
     </header>
+    <div class="solutionboxtitle">
+      <h1>Our Basic Solution</h1>
+    </div>
     <main>
-      <div class="solutiontogerrymandercontainer">
-        <div class="solutiontogerrymandertitle">
-          <h2>Our Solution to Gerrymandering</h2>
-        </div>
-        <div class="solutiontogerrymandercontent">
+      <div class="solnpicturecontainer">
+        <img src="/images/solutionimg.png" alt="solution" />
+      </div>
+      <div class="solncontainer">
+        <div class="solnbox">
+          <h2>Step 1:</h2>
+          <h3>Access US Census Bureau for State</h3>
           <p>
-            Our solution to gerrymandering is to create a fair WHICH IS SHOWN
-            BELOW!
+            The first step is to access the US Census Bureau for the state you
+            are interested in. This will allow you to pull the shapefile and
+            demographic/population data for the state.
           </p>
+          <div class="imgcontainer">
+            <a
+              href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html"
+              target="_blank"
+            >
+              <img
+                src="/images/solnstep1img.png"
+                alt="step1"
+                style="width: 50%"
+              />
+            </a>
+          </div>
         </div>
+        <div class="solnarrows">
+          <span style="font-size: 50px">&#8594;</span>
+        </div>
+        <div class="solnbox">
+          <h2>Step 2:</h2>
+          <h3>Combine Data in GeoPandas</h3>
+          <p>The second step is to combine the data in GeoPandas.</p>
+          <div class="imgcontainer">
+            <a href="https://geopandas.org/en/stable/" target="_blank">
+              <img
+                src="/images/solnstep2img.png"
+                alt="step1"
+                style="width: 50%"
+              />
+            </a>
+          </div>
+        </div>
+        <div class="solnarrows">
+          <span style="font-size: 50px">&#8594;</span>
+        </div>
+        <div class="solnbox">
+          <h2>Step 3:</h2>
+          <h3>Enhance Visuals with Folium</h3>
+          <p>
+            The third step is to enhance the visuals with Folium. This will
+            allow you to create an interactive map that will be displayed on the
+            web.
+          </p>
+          <div class="imgcontainer">
+            <a
+              href="https://python-visualization.github.io/folium/latest/"
+              target="_blank"
+            >
+              <img
+                src="/images/solnstep3img.png"
+                alt="step1"
+                style="width: 50%"
+              />
+            </a>
+          </div>
+        </div>
+        <div class="solnarrows">
+          <span style="font-size: 50px">&#8594;</span>
+        </div>
+        <div class="solnbox">
+          <h2>Step 4:</h2>
+          <h3>Repeat For Each State</h3>
+          <p>The final step is to repeat the process for each state.</p>
+          <div class="imgcontainer">
+            <a
+              href="https://www.census.gov/library/visualizations/2021/dec/2020-resident-population-map.html"
+              target="_blank"
+            >
+              <img
+                src="/images/solnstep4img.png"
+                alt="step1"
+                style="width: 50%"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="algorithmboxtitle">
+        <h1>Our Implementation Overview</h1>
+      </div>
+      <div class="algorithmcontainerimg">
+        <img src="/images/implementationOverview.png" alt="algorithm" />
+      </div>
+      <div class="algorithmcontainer">
+        <p>
+          &rArr; We aim to fulfill these requirements using a Pipe-Filter model
+          for creating and displaying district maps. Firstly, the data component
+          of our project will consist of electoral data from
+          <strong>Redistricting Data Hub</strong>, a well respected resource for
+          districting data, as well as
+          <strong>geographic, population, and demographic data</strong> pulled
+          from the US Census. Then, this data can then be fed into our developed
+          Python package, which is the heart of our project. Through this
+          package, we will perform a redistricting algorithm using the
+          geographical data tool <strong>pandas</strong>, assisted by
+          <strong>GerryChain</strong>, a package developed by the Metric
+          Geometry & Gerrymandering Redistricting Lab at Tufts University. These
+          generated districts will be evaluated using
+          <strong>fairness metrics</strong> pulled from the literature on
+          evaluating district fairness. These maps will then be visualized using
+          <strong>Folium</strong>, which converts geopandas data into an
+          interactable map. Finally, these interactable maps will be made
+          available on our website, along with justification for the generated
+          district plan and further education on redistricting practices.
+        </p>
       </div>
     </main>
     <footer>
-      <div class="footer">Copyright &copy; 2024</div>
+      <div class="footer">Copyright &copy; 2024 FairyMander</div>
     </footer>
   </body>
 </html>

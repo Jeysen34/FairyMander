@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="eng">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FairyMander | Glossary</title>
+    <link rel="icon" href="/images/logo.png" type="image" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="glossary.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      type="text/javascript"
+      async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"
+    ></script>
+  </head>
+  <body>
+    <header class="header">
+      <a href="index.html">
+        <div class="logo">
+          <img src="/images/logo.png" alt="logo" height="80" width="80" />
+        </div>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <div class="verticaline"></div>
+          <div class="moremenudropdown">
+            <button class="moremenu"></button>
+            <a>More</a>
+            <div class="moremenu-content">
+              <li>
+                <a
+                  target="_blank"
+                  href="https://ceias.nau.edu/capstone/projects/CS/2024/FairyMander_S24/"
+                  >Visit Capstone's website</a
+                >
+                <a
+                  target="_blank"
+                  href="https://www.ceias.nau.edu/cs/CS_Capstone/Projects/S24/BeroB_VotingDistricts_v01.pdf"
+                  >Inital Project Proposal</a
+                >
+                <a
+                  target="_blank"
+                  href="https://github.com/Jeysen34/FairyMander"
+                  >GitHub Repository</a
+                >
+                <a href="/glossary.html">Glossary</a>
+              </li>
+            </div>
+          </div>
+        </ul>
+      </nav>
+    </header>
+    <div class="glossaryHeader">
+      <h1>FairyMander Glossary</h1>
+    </div>
+    <main>
+      <br />
+      <div class="searchBar">
+        <input
+          type="text"
+          id="textInput"
+          onkeyup="myFunction()"
+          placeholder="Search for Term"
+        />
+      </div>
+      <div class="glossaryContainer">
+        <table id="glossaryTable">
+          <thead>
+            <tr>
+              <th scope="col">Term</th>
+              <th scope="col">Definition</th>
+            </tr>
+          </thead>
+          <tr>
+            <th scope="row" colspan="2">Gerrymandering</th>
+          </tr>
+          <tbody>
+            <tr>
+              <td>Gerrymander</td>
+              <td>
+                The act of manipulating district lines to control political
+                outcomes. This means that you are not actually choosing the
+                member of Congress that you want representing you, they are
+                being chosen for you. Gerrymandering harms our democracy and
+                could lead to laws being passed that do not <br />
+                represent you, or your community.
+              </td>
+            </tr>
+            <tr>
+              <td>Packing</td>
+              <td>
+                The action of <strong>packing</strong> like-minded voters to as
+                few districts as possible
+              </td>
+            </tr>
+            <tr>
+              <td>Cracking</td>
+              <td>
+                The action of <strong>splitting</strong> like-minded voters with
+                similar characteristics across different districts
+              </td>
+            </tr>
+          </tbody>
+          <tr>
+            <th scope="row" colspan="2">Fairness Metric</th>
+          </tr>
+          <tbody>
+            <tr>
+              <td>Reock Score</td>
+              <td>
+                <p>
+                  A measurement of compactness for each district that ranges
+                  from 0 to 1. It is the ratio between the area of a district
+                  and the area of the minimum bounding circle around the
+                  district. To determine the compactness of the district, the
+                  score needs to be closer to 1 for the district to be
+                  considered compact. The formula which is represented as \( R =
+                  \frac {A_D} {A_{mbc}} \) where \(A_D\) is the area of the
+                  district and \(A_{mbc}\) is the area of the district's minimum
+                  bounding circle.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>Polsby Popper</td>
+              <td>
+                <p>
+                  Another measurement of compactness. It is the ratio between a
+                  district's area and the square of its perimeter. The closer
+                  the score is to 1, the more compact the district is. The
+                  formula which is represented as \( P(D) = \frac {4\pi {A_D}}
+                  {P(D)^2} \) where \({A_D}\) is the area of the district and
+                  \(P\) is the perimeter of the district.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td>Efficiency Gap</td>
+              <td>Definition</td>
+            </tr>
+            <tr>
+              <td>Lopsided Margin Test</td>
+              <td>Definition</td>
+            </tr>
+            <tr>
+              <td>Minority Majority</td>
+              <td>
+                <p>
+                  The Dissimilarity Index is a measure of minority
+                  representation within a district. Each index value indicates
+                  how the minority population is distributed across the
+                  districts in the state. This metric is measured on a scale
+                  from 0 to 1 where values closer to 1 indicate higher
+                  segregation of minority populations between districts. The
+                  formula which is represented as \( D = \frac{1}{2}
+                  \sum_{i=1}^N \left| \frac{a_i}{A} - \frac{b_i}{B} \right| \)
+                  where \(N\) equals the number of districts in a state,
+                  \({a_i}\) as the population of group \(A\) in a district,
+                  \(A\) as the total population of group A, \({b_i}\) as the
+                  population of group \(B\) in a district, and \(B\) as the
+                  total population of group B.
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <script src="/js/glossarySearch.js"></script>
+    </main>
+  </body>
+  <footer>
+    <div class="footer">Copyright &copy; 2024 FairyMander</div>
+  </footer>
+</html>
+
+<!-- Math Equation: https://stackoverflow.com/questions/49300667/which-mathjax-cdn-script-should-be-used-->
