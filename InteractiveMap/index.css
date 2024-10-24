@@ -11,11 +11,20 @@ main {
   max-width: 80rem;
 }
 
+/* style for eagle img */
+.eagleimg {
+  display: flex;
+  justify-content: flex-start;
+}
+
 /* style for main */
 .states-title {
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
+  padding-left: 5rem;
+  line-height: 1rem;
+  margin-top: 3rem;
 }
 .map-view {
   fill: #f2f2f2;
@@ -59,8 +68,9 @@ circle:hover {
 
 /* style for hamburger menu */
 .hammenu {
-  position: relative;
   display: flex;
+  padding-right: 2.5rem;
+  position: relative;
   z-index: 0;
 }
 
@@ -69,6 +79,7 @@ circle:hover {
   align-items: center;
   height: 1rem;
   width: 1rem;
+  aspect-ratio: 1;
 }
 
 .bar1,
@@ -112,50 +123,11 @@ circle:hover {
   display: flex;
   text-decoration: none;
   color: black;
-  padding: 0.3rem;
+  padding: 0.2rem;
 }
 
 .menu-items a:hover {
   background-color: lightgrey;
-}
-
-/* style for media queries */
-@media (max-width: 768px) {
-  .header {
-    flex-direction: column;
-  }
-
-  nav ul {
-    display: none;
-  }
-
-  .menu-items {
-    display: none;
-  }
-
-  .hammenu {
-    display: flex;
-  }
-
-  .menu-items {
-    display: none;
-  }
-
-  .change .bar1 {
-    transform: translate(0, 11px) rotate(-45deg);
-  }
-
-  .change .bar2 {
-    opacity: 0;
-  }
-
-  .change .bar3 {
-    transform: translate(0, -11px) rotate(45deg);
-  }
-
-  .menu-items {
-    display: none;
-  }
 }
 
 .redistrctingprocesstitle {
@@ -262,6 +234,7 @@ circle:hover {
 
 .ourmissioncont:hover {
   font-weight: bold;
+  color: red;
 }
 
 .ourmissioncont a {
@@ -273,12 +246,13 @@ circle:hover {
 .apicensusdatacont {
   text-transform: uppercase;
   text-decoration: none;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   margin-left: 1rem;
 }
 
 .apicensusdatacont:hover {
   font-weight: bold;
+  color: red;
 }
 
 .apicensusdatacont a {
@@ -316,4 +290,35 @@ circle:hover {
 
 .learnmorecontent a:hover {
   font-weight: bold;
+}
+
+/* style for media queries */
+@media (max-width: 600px) {
+  section {
+    width: 100%;
+  }
+  main {
+    width: 100%;
+  }
+  .eagleimg {
+    display: none;
+  }
+}
+
+@media (min-width: 601px) {
+  .map-view {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .map-view {
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .map-view {
+    width: 100%;
+  }
 }

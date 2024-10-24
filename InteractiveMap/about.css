@@ -1,27 +1,100 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 main {
   margin-left: auto;
   margin-right: auto;
-  max-width: 90rem;
-}
-.solutiontogerrymandercontainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-.solutiontogerrymandertitle {
-  font-size: 2rem;
-  font-weight: bolder;
-  text-align: center;
-  user-select: text;
-  padding-top: 0.1rem;
-  line-height: 0.2rem;
+  max-width: none;
+  min-width: 0;
+  min-height: inherit;
+  max-width: 100rem;
 }
 
-.solutiontogerrymandercontent {
+.solutionboxtitle {
+  background-color: lightgrey;
+  text-align: center;
+  padding: 3.5rem;
+}
+.solnpicturecontainer {
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 1rem;
+  margin-right: 10rem;
+  margin-left: 10rem;
+  margin-top: 3rem;
+  border-width: 0.3rem;
+  border-style: solid;
+  border-image: linear-gradient(to bottom, #c4e1f6, #8abfa3) 1 100%;
+}
+
+.solnpicturecontainer img {
+  filter: brightness(0.5);
+}
+
+.solncontainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.solnbox {
+  flex: 1;
+  padding: 3rem;
+  margin: 2rem;
+  box-shadow: 0.5rem 0.5rem 1rem;
+  border-radius: 2rem;
+  text-align: center;
+  position: relative;
+  box-sizing: border-box;
+  border: 0.1rem solid black;
+}
+
+h2 {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+h3 {
+  font-weight: bold;
+  text-decoration: underline;
+  margin-top: -1rem;
+}
+.solnarrows {
+  padding-top: 11rem;
+}
+p {
+  margin-top: -0.5rem;
+}
+.imgcontainer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.4rem;
+}
+
+.algorithmboxtitle {
+  text-align: center;
+}
+.algorithmcontainerimg {
+  display: flex;
+  justify-content: center;
+  margin-right: 10rem;
+  margin-left: 10rem;
+  border-width: 0.3rem;
+  border-style: solid;
+  border-image: linear-gradient(to bottom, #c4e1f6, #8abfa3) 1 100%;
+}
+.algorithmcontainerimg img {
+  filter: brightness(0.5);
+}
+
+.algorithmcontainer {
+  padding: 2rem;
+  margin: 2rem;
+  box-shadow: 0.5rem 0.5rem 1rem;
+  border: 0.1rem solid black;
+  border-radius: 2rem;
+  text-align: center;
+  font-size: large;
+  position: relative;
 }

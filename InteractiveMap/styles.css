@@ -17,10 +17,16 @@ section {
   max-width: 120rem;
 }
 
+.logo {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+}
+
 /* style for header */
 .header {
   background-color: lightgrey;
-  padding: 1rem 2rem;
+  padding: 1rem;
   color: black;
   position: relative;
   text-transform: uppercase;
@@ -28,16 +34,16 @@ section {
   z-index: 1;
   margin-left: auto;
   margin-right: auto;
-  max-width: 120rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 /* style for nav */
 nav ul {
   list-style: none;
-  margin: 0;
+  padding: 1rem;
   display: flex;
-  justify-content: right;
-  padding-right: 1rem;
+  justify-content: left;
 }
 
 nav a {
@@ -53,13 +59,16 @@ nav a:hover {
 }
 
 .verticaline {
-  border-left: 0.2rem solid black;
+  border-left: 0.3rem solid black;
   z-index: -1;
 }
+
+/* style for menu dropdown */
 .moremenudropdown {
   position: relative;
   display: inline-block;
   cursor: context-menu;
+  padding-left: 0.5rem;
 }
 .moremenu {
   text-decoration: none;
@@ -74,6 +83,8 @@ nav a:hover {
   position: absolute;
   background-color: lightgrey;
   z-index: 1;
+  line-height: 0rem;
+  padding: 1.5rem;
 }
 
 .moremenu-content a {
@@ -82,7 +93,7 @@ nav a:hover {
   display: flex;
   padding: 1rem;
   text-transform: uppercase;
-  margin-top: 0.625rem;
+  margin-top: 1rem;
 }
 
 .moremenudropdown:hover .moremenu-content {
@@ -103,5 +114,137 @@ footer {
   bottom: 0;
   margin-left: auto;
   margin-right: auto;
-  max-width: 120rem;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-color: lightcyan;
+    width: 100%;
+  }
+
+  main {
+    width: 100%;
+  }
+
+  section {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 120rem;
+  }
+
+  .logo {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+  }
+
+  /* style for header */
+  .header {
+    background-color: lightgrey;
+    padding: 1rem;
+    color: black;
+    position: relative;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    z-index: 1;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* style for nav */
+  nav ul {
+    list-style: none;
+    padding: 1rem;
+    display: flex;
+    justify-content: left;
+  }
+
+  nav a {
+    color: black;
+    text-decoration: none;
+    font-size: larger;
+    margin-right: 1.5rem;
+    transition: font-weight 0.3s;
+  }
+
+  nav a:hover {
+    font-weight: bold;
+  }
+
+  .verticaline {
+    border-left: 0.3rem solid black;
+    z-index: -1;
+  }
+
+  /* style for menu dropdown */
+  .moremenudropdown {
+    position: relative;
+    display: inline-block;
+    cursor: context-menu;
+    padding-left: 0.5rem;
+  }
+  .moremenu {
+    text-decoration: none;
+    border: none;
+    background-color: lightgrey;
+    color: black;
+    text-transform: uppercase;
+  }
+
+  .moremenu-content {
+    display: none;
+    position: absolute;
+    background-color: lightgrey;
+    z-index: 1;
+    line-height: 0rem;
+    padding: 1.5rem;
+  }
+
+  .moremenu-content a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    padding: 1rem;
+    text-transform: uppercase;
+    margin-top: 1rem;
+  }
+
+  .moremenudropdown:hover .moremenu-content {
+    display: flex;
+    right: 0;
+    left: auto;
+    box-shadow: 1rem black;
+    white-space: nowrap;
+  }
+
+  /* style for footer */
+  footer {
+    background-color: lightgrey;
+    color: black;
+    text-align: left;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  nav a {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  nav a {
+    margin-right: 0;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
 }

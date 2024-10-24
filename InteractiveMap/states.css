@@ -1,0 +1,322 @@
+main {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: none;
+  min-width: 0;
+  min-height: inherit;
+  max-width: 100rem;
+}
+
+.title {
+  display: inline;
+  justify-content: center;
+}
+.statetitle {
+  font-size: 2rem;
+  font-weight: bolder;
+  text-align: center;
+  user-select: text;
+  padding-top: 0.1rem;
+  line-height: 0.2rem;
+}
+
+.statetitle p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  user-select: text;
+}
+
+.backbtn {
+  background-color: red;
+  border: 0.25rem solid transparent;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  cursor: default;
+  transition: background-color 0.5s;
+  display: flex;
+  justify-content: center;
+  width: 7rem;
+  padding: 1.5rem;
+  margin-left: auto;
+  margin-right: 1rem;
+  box-shadow: 0.25rem 0.25rem 0.25rem blue;
+}
+.backbtn:hover {
+  background-color: blue;
+}
+
+#back {
+  text-decoration: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  background-color: transparent;
+  border: transparent;
+  text-transform: uppercase;
+  font-size: bolder;
+  color: white;
+}
+
+#back:hover {
+  text-decoration: underline;
+}
+
+.table {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 1rem;
+}
+
+.cardtitle {
+  font-weight: bold;
+  user-select: text;
+  text-decoration: underline;
+  background: linear-gradient(50deg, red, white, blue);
+  opacity: 0.5;
+  filter: brightness(1.5);
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
+}
+
+.card {
+  text-align: center;
+  grid-column: span 3; /* adjustable columns */
+  display: block;
+  border-block: 0.3rem solid black;
+}
+
+.dropDownBtn {
+  background-color: lightgray;
+  border: 0.2rem solid black;
+  border-radius: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.buttonpiechart {
+  display: flex;
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.dropDownBtn:hover {
+  background: linear-gradient(50deg, red, white, blue);
+}
+
+.pieChartDisplay {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+.exploreotherstatestitle {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  user-select: text;
+  line-height: 0.5rem;
+}
+
+.statestable {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.statestable a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: font-weight 0.5s;
+  display: flex;
+  padding: 0.5rem;
+  margin: 0.1rem;
+  font-size: 0.9rem;
+}
+.statestable a:hover {
+  text-decoration: underline;
+  color: blue;
+}
+
+.statescol1 {
+  width: 50%;
+  background-color: lightgray;
+  border-right: 0.2rem solid blue;
+  border-radius: 1rem;
+}
+
+.statescol2 {
+  width: 50%;
+  background-color: lightgray;
+  border-right: 0.2rem solid blue;
+  border-radius: 1rem;
+}
+.statescol3 {
+  width: 50%;
+  background-color: lightgray;
+  border-right: 0.2rem solid blue;
+  border-radius: 1rem;
+}
+
+.statescol4 {
+  width: 50%;
+  background-color: lightgray;
+  border-right: 0.2rem solid blue;
+  border-radius: 1rem;
+}
+
+.statescol5 {
+  width: 50%;
+  background-color: lightgray;
+  border-right: 0.2rem solid blue;
+  border-radius: 1rem;
+}
+
+.fairnessheader {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  user-select: text;
+  line-height: 0.5rem;
+}
+
+.fairnesscardtitle {
+  user-select: text;
+  text-decoration: underline;
+}
+
+.fairnesscontainer {
+  border: 0.2rem solid black;
+  border-radius: 1.5rem;
+  margin: 1rem;
+  padding-bottom: 1rem;
+}
+
+.fairnesstable {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  justify-content: space-evenly;
+}
+
+.fairnesscard {
+  display: flex;
+  flex-direction: column;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltiphover {
+  cursor: pointer;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  border: 0.1rem solid black;
+  color: black;
+  text-align: center;
+  padding: 0.5rem;
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+  border-radius: 1rem;
+  left: 60%;
+  top: 15%;
+  width: 20rem;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.learnmorefairness {
+  display: flex;
+  justify-content: center;
+}
+
+.learnmorefairnessbtn {
+  cursor: pointer;
+  transition: font-weight 0.3s;
+  border-radius: 2rem;
+  padding: 0.5rem;
+}
+
+.redistrctinglawstitle {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  user-select: text;
+}
+
+.redistrctinglawscont {
+  border: 0.2rem solid black;
+  border-radius: 1.5rem;
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.redistrctinglawscontent {
+  padding: 1rem;
+}
+
+.redistrctinglawscontentlearnmore {
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.redistrctinglawscontentlearnmore:hover {
+  font-weight: bold;
+  color: red;
+}
+
+.redistrctinglawscontentlearnmore a {
+  text-decoration: underline;
+  color: black;
+  transition: font-weight 0.2s;
+}
+
+.feedbacktitle {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  user-select: text;
+  line-height: 0.5rem;
+}
+
+.feebackcontprompt {
+  display: flex;
+  justify-content: center;
+  font-size: larger;
+}
+
+.feebackcontsubmitform {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  font-size: 1rem;
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}
+
+.feebackcontsubmitform a {
+  color: black;
+  text-decoration: none;
+  transition: font-weight 0.3s;
+  display: flex;
+  text-transform: uppercase;
+}
+
+.feebackcontsubmitform a:hover {
+  font-weight: bold;
+}
