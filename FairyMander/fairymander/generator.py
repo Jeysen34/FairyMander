@@ -52,20 +52,9 @@ class DistrictGenerator:
         """
         print("\ngetting state GeoDataFrame")
         package_path = os.path.dirname(importlib.util.find_spec("fairymander.generator").origin)
-        # NOTE: figure out this "cleaned" file stuff
-        # # CA has a "cleaned" file for the islands
-        # if self.prefix == "ca":
-        #     return gpd.read_file("../finalData/modified_precincts_graph.shp")
         file_path = os.path.join(package_path, f"../Data/finalData/{self.prefix}/{self.prefix}_bg_data.zip")
         geo_df = gpd.read_file(f"zip://{file_path}")
         geo_df.to_crs(epsg=epsg[self.prefix], inplace=True)
-        # voting_df = pd.read_csv(f"./CSVfiles/st{id_map[self.prefix]}_{self.prefix}_new.csv", delimiter=",", header=0, dtype={'GEOID20': str})
-        # result = geo_df[['GEOID20', 'geometry', 'C_TOT22']].merge(voting_df, on='GEOID20')
-        # # FL and NY do not have a "cleaned" file
-        # if self.prefix == 'fl':
-        #     result = result[~result['GEOID20'].isin({'12087980100'})]
-        # elif self.prefix == 'ny':
-        #     result = result[~result['GEOID20'].isin({'36061000100'})]
         print("Sucessfully loaded state GeoDataFrame")
         return geo_df
 
