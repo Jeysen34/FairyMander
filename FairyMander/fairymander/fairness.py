@@ -1,7 +1,7 @@
 #import the libarays
 import geopandas as gpd
 import numpy as np
-from math import ceil
+from math import floor
 from statistics import median
 import matplotlib.pyplot as plt
 
@@ -362,7 +362,7 @@ def calc_efficiency_gap(test_map: gpd.GeoDataFrame) -> float:
     for _, district in test_map.iterrows():
         district_votes = district['party_rep'] + district['party_dem']
         total_votes += district_votes
-        votes_to_win = ceil(district_votes / 2)
+        votes_to_win = floor(district_votes / 2) + 1
         if district['party_rep'] > district['party_dem']:
             wasted_votes_dem += district['party_dem']
             wasted_votes_rep += district['party_rep'] - votes_to_win

@@ -156,7 +156,6 @@ class DistrictGenerator:
 
             if current_opt_metric not in seen_scores:
                 heapq.heappush(best, (current_opt_metric, recom_chain.best_part.assignment))
-
                 if len(best) > self.num_maps:
                     heapq.heappop(best)
             seen_scores.add(current_opt_metric)
@@ -208,7 +207,7 @@ class DistrictGenerator:
         # dissolve the maps so they can be returned
         print("Dissolving maps...")
         for index, curr_map in enumerate(final_maps):
-            dissolved_gdf = curr_map.dissolve(by='District').drop(columns=['GEOID20'])
+            dissolved_gdf = curr_map.dissolve(by='District', aggfunc='sum').drop(columns=['GEOID20'])
             dissolved_gdf['District'] = range(1, len(dissolved_gdf) + 1)
             dissolved_gdf = dissolved_gdf.reset_index(drop=True)
             final_maps[index] = dissolved_gdf
