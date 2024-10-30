@@ -88,7 +88,11 @@ def full_analysis(test_map: gpd.GeoDataFrame, verbose: bool = False, show_map: b
     if verbose:
         print("The Lobsided Margin test is a district competitiveness measure. It is the difference between the average percentages by which each party won in a district.")
         print("A percent difference 0-100, where a negative (-) value indicates Republicans have been packed (i.e., a Democrat advantage), where a positive (+) value indicates Democrats have been packed (i.e., a Republican advantage")
-    print(f"Lobsided Margin Score: {calc_lobsided_margins(test_map)}")
+    lobsided_margin = calc_lobsided_margins(test_map)
+    if lobsided_margin:
+        print(f"Lobsided Margin Score: {calc_lobsided_margins(test_map)}")
+    else:
+        print("One party won every district, so lobsided margin is not calculable.")
     print()
     if verbose:
         print("The Disimilarity Index is a district minority representation measure. Each index indicates how spread out the minority population is across the district plan.")
@@ -204,17 +208,24 @@ def compare_maps(map_one, map_two, verbose=False, show_maps = True):
     if verbose:
         print("The Lobsided Margin test is a district competitiveness measure. It is the difference between the average percentages by which each party won in a district.")
         print("A percent difference 0-100, where a negative (-) value indicates Republicans have been packed (i.e., a Democrat advantage), where a positive (+) value indicates Democrats have been packed (i.e., a Republican advantage")
-    print(f"Lobsided Margin Score, Map One: {map_one_metrics['Lobsided Margin']}")
-    print(f"Lobsided Margin Score, Map Two: {map_two_metrics['Lobsided Margin']}")
-    if abs(map_one_metrics['Lobsided Margin']) < abs(map_two_metrics['Lobsided Margin']):
-        print("Map One has a better Lobsided Margin Score")
-        map_one_winning_metrics.append('Lobsided Margin')
-    elif abs(map_one_metrics['Lobsided Margin']) > abs(map_two_metrics['Lobsided Margin']):
-        print("Map Two has a better Lobsided Margin Score")
-        map_two_winning_metrics.append('Lobsided Margin')
+    if map_one_metrics['Lobsided Margin']:
+        print(f"Lobsided Margin Score, Map One: {map_one_metrics['Lobsided Margin']}")
     else:
-        ties.append('Lobsided Margin')
-        print("Both maps have the same Lobsided Margin Score")
+        print("One party won every district in Map One, so lobsided margin is not calculable.")
+    if map_two_metrics['Lobsided Margin']:
+        print(f"Lobsided Margin Score, Map Two: {map_two_metrics['Lobsided Margin']}")
+    else:
+        print("One party won every district in Map Two, so lobsided margin is not calculable.")
+    if map_one_metrics['Lobsided Margin'] and map_two_metrics['Lobsided Margin']:
+        if abs(map_one_metrics['Lobsided Margin']) < abs(map_two_metrics['Lobsided Margin']):
+            print("Map One has a better Lobsided Margin Score")
+            map_one_winning_metrics.append('Lobsided Margin')
+        elif abs(map_one_metrics['Lobsided Margin']) > abs(map_two_metrics['Lobsided Margin']):
+            print("Map Two has a better Lobsided Margin Score")
+            map_two_winning_metrics.append('Lobsided Margin')
+        else:
+            ties.append('Lobsided Margin')
+            print("Both maps have the same Lobsided Margin Score")
     print()
     if verbose:
         print("The Disimilarity Index is a district minority representation measure. Each index indicates how spread out the minority population is across the district plan.")
@@ -405,7 +416,7 @@ def calc_mean_median_difference(test_map: gpd.GeoDataFrame) -> float:
     return 100 * (dem_percentage_statewide - median(dem_percentages))
 
 
-def calc_lobsided_margins(test_map: gpd.GeoDataFrame) -> float:
+def calc_lobsided_margins(test_map: gpd.GeoDataFrame) -> float | None:
     """
     Lobsided Margin test is a district competitiveness measure. It is the difference
     between the average percentages by which each party won in a district. It is a percentage 0-100
@@ -423,6 +434,7 @@ def calc_lobsided_margins(test_map: gpd.GeoDataFrame) -> float:
         lobsided margin test for the district map, ranges 0-100
         (-) value indicates Democrat Advantage
         (+) value indicates Republican Advantage
+        None if lobsided margin cannot be calculated, i.e. if one party won every district
     """
     dem_win_percents = []
     rep_win_percents = []
@@ -432,6 +444,15 @@ def calc_lobsided_margins(test_map: gpd.GeoDataFrame) -> float:
             rep_win_percents.append((district['party_rep'] / district_votes) * 100)
         else:
             dem_win_percents.append((district['party_dem'] / district_votes) * 100)
+
+    # if one party won every district, then it's impossible to calculate lobsided margin
+    if len(dem_win_percents) == 0:
+        print("Republicans won every district, so lobsided margin cannot be calculated")
+        return None
+    if len(rep_win_percents) == 0:
+        print("Democrats won every district, so lobsided margin cannot be calculated")
+        return None
+
     return  (sum(dem_win_percents) / len(dem_win_percents)) - (sum(rep_win_percents) / len(rep_win_percents))
 
 def calc_dissimilarity_index(test_map: gpd.GeoDataFrame) -> dict:
