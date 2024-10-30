@@ -25,7 +25,7 @@ num_districts = {
     'sd': 1, 'tn': 9, 'tx': 38,
     'ut': 4, 'vt': 1, 'va': 11,
     'wa': 10, 'wv': 2, 'wi': 8,
-    'wy': 1
+    'wy': 1, 'ri': 2
 }
 
 # dict determining the epsg code we will use for geographic projection
@@ -41,8 +41,8 @@ epsg = {
     'nv': 32108, 'nh': 32110, 'nj': 32111,
     'nm': 32114, 'ny': 32118, 'nc': 32119,
     'nd': 32120, 'oh': 32123, 'ok': 32124,
-    'or': 8328, 'pa': 32128, 'sc': 32033,
-    'sd': 32135, 'tn': 32136, 'tx': 32139,
+    'or': 8328, 'pa': 32128, 'ri': 32130,
+    'sc': 32033,'sd': 32135, 'tn': 32136, 'tx': 32139,
     'ut': 32043, 'vt': 32145, 'va': 3968,
     'wa': 7582, 'wv': 32150, 'wi': 32153,
     'wy': 32159
@@ -65,7 +65,7 @@ id_map = {
     'sd': '46', 'tn': '47', 'tx': '48',
     'ut': '49', 'vt': '50', 'va': '51',
     'wa': '53', 'wv': '54', 'wi': '55',
-    'wy': '56'
+    'wy': '56', 'ri': '44'
 }
 
 # dict with initial lattitude, longitude, and zoom for displaying state maps in folium
