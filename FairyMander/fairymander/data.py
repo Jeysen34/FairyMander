@@ -122,7 +122,8 @@ def get_curr_district_file(prefix: str) -> gpd.GeoDataFrame:
                             'White': 'eth1_eur',
                             'Hispanic': 'eth1_hisp',
                             'Black': 'eth1_aa',
-                            'Asian': 'eth1_esa'})
+                            'Asian': 'eth1_esa',
+                            'Native': 'eth2_81'})
     res_gdf = gpd.GeoDataFrame(res, geometry='geometry')
     res_gdf.to_crs(epsg=epsg[prefix], inplace=True)
 
