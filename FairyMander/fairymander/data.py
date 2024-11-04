@@ -98,6 +98,8 @@ def get_curr_district_file(prefix: str) -> gpd.GeoDataFrame:
     voter_csv = gpd.read_file(voter_file_path)
     voter_csv = voter_csv.drop([voter_csv.index[0], voter_csv.index[-1]])
 
+    geo_df = geo_df[geo_df['CD118FP'] != 'ZZ']
+
     geo_df['CD118FP'] = geo_df['CD118FP'].astype(int)
     voter_csv['ID'] = voter_csv['ID'].astype(int)
 
