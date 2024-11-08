@@ -26,6 +26,7 @@ num_districts = {
     'ut': 4, 'vt': 1, 'va': 11,
     'wa': 10, 'wv': 2, 'wi': 8,
     'wy': 1, 'ri': 2, 'ky': 6
+
 }
 
 # dict determining the epsg code we will use for geographic projection
@@ -46,6 +47,7 @@ epsg = {
     'ut': 32043, 'vt': 32145, 'va': 3968,
     'wa': 7582, 'wv': 32150, 'wi': 32153,
     'wy': 32159, 'ky': 2205
+
 }
 
 # dict with each state id number, padded with zeros for single digits
@@ -58,7 +60,7 @@ id_map = {
     'me': '23', 'md': '24', 'ma': '25',
     'mi': '26', 'mn': '27', 'ms': '28',
     'mo': '29', 'mt': '30', 'ne': '31',
-    'nv': '31', 'nh': '33', 'nj': '34',
+    'nv': '32', 'nh': '33', 'nj': '34',
     'nm': '35', 'ny': '36', 'nc': '37',
     'nd': '38', 'oh': '39', 'ok': '40',
     'or': '41', 'pa': '42', 'sc': '45',
@@ -66,6 +68,7 @@ id_map = {
     'ut': '49', 'vt': '50', 'va': '51',
     'wa': '53', 'wv': '54', 'wi': '55',
     'wy': '56', 'ri': '44', 'ky': '21'
+
 }
 
 # dict with initial lattitude, longitude, and zoom for displaying state maps in folium
@@ -99,6 +102,7 @@ def get_curr_district_file(prefix: str) -> gpd.GeoDataFrame:
     voter_csv = voter_csv.drop([voter_csv.index[0], voter_csv.index[-1]])
 
     geo_df = geo_df[geo_df['CD118FP'] != 'ZZ']
+   
 
     geo_df['CD118FP'] = geo_df['CD118FP'].astype(int)
     voter_csv['ID'] = voter_csv['ID'].astype(int)
