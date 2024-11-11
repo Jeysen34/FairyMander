@@ -277,6 +277,8 @@ def compare_maps(map_one, map_two, verbose=False, show_maps = True):
     else:
         print("The Maps tied in metric analysis")
 
+    return map_one_winning_metrics, map_two_winning_metrics, ties
+
 
 #function of the reock score
 def calc_avg_reock(test_map: gpd.GeoDataFrame) -> float:
