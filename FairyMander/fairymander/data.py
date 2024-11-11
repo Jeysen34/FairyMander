@@ -1,6 +1,7 @@
 import geopandas as gpd
 import importlib.util
 import os
+import pandas as pd
 
 
 """
@@ -103,8 +104,7 @@ def get_curr_district_file(prefix: str) -> gpd.GeoDataFrame:
 
     geo_df = geo_df[geo_df['CD118FP'] != 'ZZ']
    
-
-    geo_df['CD118FP'] = geo_df['CD118FP'].astype(int)
+    geo_df['CD118FP'] = pd.to_numeric(geo_df['CD118FP'], errors='coerce').astype('Int64')
     voter_csv['ID'] = voter_csv['ID'].astype(int)
 
     geo_df = geo_df.rename(columns={'CD118FP': 'ID'})
