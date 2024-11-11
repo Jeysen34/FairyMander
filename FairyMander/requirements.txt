@@ -10,3 +10,4 @@ sympy==1.12
 gerrychain==0.3.2
 geodatasets==2024.8.0
 tqdm==2.2.3
+pytest==8.3.3
