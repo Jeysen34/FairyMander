@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fairymander"
+version = "0.1"
+description = "Package for generating fair voting district plans, developed as part of the FairyMander capstone project at Northern Arizona University."
+authors = [
+    { name = "Jeysen Angous", email = "jaa678@nau.edu" },
+    { name = "Dylan Franco", email = "dfk55@nau.edu" },
+    { name = "Sophia Ingram", email = "sni7@nau.edu" },
+    { name = "Ceanna Jarrett", email = "cjj262@nau.edu" },
+    { name = "Izaac Molina", email = "iam97@nau.edu" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "pandas~=2.2.2",
+    "geopandas~=1.0.1",
+    "matplotlib~=3.9.2",
+    "folium~=0.16.0",
+    "libpysal~=4.12.1",
+    "sympy~=1.12",
+    "gerrychain~=0.3.2",
+    "geodatasets~=2024.8.0",
+    "tqdm~=2.2.3"
+]
+
+[tool.setuptools.packages.find]
+include = ["fairymander"]
