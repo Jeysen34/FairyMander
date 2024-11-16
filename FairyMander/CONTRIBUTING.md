@@ -23,7 +23,7 @@ You can also activate it via command line...
 3. Install fairymander package
 First, activate the .venv (see "You can also activate it via command line...")
 
-`cd` into the `FaryMander/fairymander` folder, if you have not already
+`cd` into the main `FairyMander` folder, if you have not already
 
 build the fairymander package using `pip install -e .`
 
