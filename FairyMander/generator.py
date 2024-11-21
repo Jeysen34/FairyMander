@@ -31,13 +31,33 @@ class DistrictGenerator:
         indicates the metric to optimize for, "compact" for polsby popper, "competitiveness" for efficiency gap
     """
     def __init__(self, prefix: str, deviation: float, steps: int, num_maps: int, opt_metric_flag: str):
-        # initialize with user input
+        # Check prefix
+        if prefix not in num_districts:
+            raise ValueError(f"Invalid state prefix '{prefix}'")
         self.prefix = prefix
-        self.steps = steps
-        self.num_maps = num_maps
-        #self.numDisplayMaps = numDisplayMaps
+
+        # Check deviation
+        if not (0.001 <= deviation <= 0.1):
+            raise ValueError(f"Deviation '{deviation}' out of range. Must be between 0.001 and 0.1.")
         self.deviation = deviation
+
+        # Check steps
+        if steps < 0:
+            raise ValueError(f"Steps '{steps}' must be >= 0.")
+        self.steps = steps
+
+        # Check num_maps
+        if not (1 <= num_maps <= 10):
+            raise ValueError(f"Number of maps '{num_maps}' out of range. Must be between 1 and 10.")
+        self.num_maps = num_maps
+
+        # Check optimization metric
+        if opt_metric_flag not in ("compact", "competitiveness"):
+            raise ValueError(
+                f"Optimization metric '{opt_metric_flag}' is invalid. Must be 'compact' or 'competitiveness'"
+            )
         self.opt_metric_flag = opt_metric_flag
+
         self.state_gdf = self._load_state_gdf()
 
     # function to get state shapefile
@@ -80,7 +100,6 @@ class DistrictGenerator:
             "population": updaters.Tally("C_TOT22"),
             "cut_edges": updaters.cut_edges,
         }
-
 
         if self.opt_metric_flag == "compact":
             partition_updaters["polsby-popper"] = polsby_popper
