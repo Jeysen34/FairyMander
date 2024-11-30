@@ -3,13 +3,12 @@ import importlib.util
 import os
 import pandas as pd
 
-
 """
-Module for obtaining data relevant to FairyMander district generation and comparison
+Module for obtaining data relevant to FairyMander district generation and comparison.
 """
-package_path = os.path.dirname(importlib.util.find_spec("fairymander.data").origin)
+package_path = os.path.dirname(importlib.util.find_spec("data").origin)
 
-# dict for the number of districts each state is apportioned
+# Dictionary for the number of districts each state is apportioned
 num_districts = {
     'al': 7, 'az': 9, 'ar': 4,
     'ca': 52, 'co': 8, 'ct': 5,
@@ -27,10 +26,9 @@ num_districts = {
     'ut': 4, 'vt': 1, 'va': 11,
     'wa': 10, 'wv': 2, 'wi': 8,
     'wy': 1, 'ri': 2, 'ky': 6
-
 }
 
-# dict determining the epsg code we will use for geographic projection
+# Dictionary determining the EPSG code we will use for geographic projection
 epsg = {
     'al': 26930, 'az': 26949, 'ar': 26952,
     'ca': 3310, 'co': 26954, 'ct': 26956,
@@ -44,14 +42,13 @@ epsg = {
     'nm': 32114, 'ny': 32118, 'nc': 32119,
     'nd': 32120, 'oh': 32123, 'ok': 32124,
     'or': 8328, 'pa': 32128, 'ri': 32130,
-    'sc': 32033,'sd': 32135, 'tn': 32136, 'tx': 32139,
+    'sc': 32033, 'sd': 32135, 'tn': 32136, 'tx': 32139,
     'ut': 32043, 'vt': 32145, 'va': 3968,
     'wa': 7582, 'wv': 32150, 'wi': 32153,
     'wy': 32159, 'ky': 2205
-
 }
 
-# dict with each state id number, padded with zeros for single digits
+# Dictionary with each state ID number, padded with zeros for single digits
 id_map = {
     'al': '01', 'az': '04', 'ar': '05',
     'ca': '06', 'co': '08', 'ct': '09',
@@ -69,10 +66,9 @@ id_map = {
     'ut': '49', 'vt': '50', 'va': '51',
     'wa': '53', 'wv': '54', 'wi': '55',
     'wy': '56', 'ri': '44', 'ky': '21'
-
 }
 
-# dict with initial lattitude, longitude, and zoom for displaying state maps in folium
+# Dictionary with initial latitude, longitude, and zoom for displaying state maps in Folium
 file_path = os.path.join(package_path, 'FoliumLongLat.csv')
 df = gpd.read_file(file_path)
 folium_longlat = {
@@ -80,21 +76,20 @@ folium_longlat = {
     for _, row in df.iterrows()
 }
 
-
 def get_curr_district_file(prefix: str) -> gpd.GeoDataFrame:
     """
-    Gets the current district file for fairness evalaution by joining and cleaning the
-    current shapefile with the voter data from Dave's
+    Gets the current district file for fairness evaluation by joining and cleaning the
+    current shapefile with the voter data from Dave's.
 
     Parameters
     ----------
     prefix: str
-        the two letter abbreviation for the state the district map belongs to (i,e, az, fl, ny)
+        The two-letter abbreviation for the state the district map belongs to (e.g., az, fl, ny).
 
     Returns
     -------
     res_gdf: GeoDataFrame
-        a geopandas dataframe containing the voting and shape data for the current district plan
+        A GeoPandas DataFrame containing the voting and shape data for the current district plan.
     """
     geo_file_path = os.path.join(package_path, f"Data/CurrentCongressionalDistricts/st{id_map[prefix]}_{prefix}/tl_2023_{id_map[prefix]}_cd118.shp")
     voter_file_path = os.path.join(package_path, f"Data/CurrentCongressionalDistricts/st{id_map[prefix]}_{prefix}/{prefix}-district-statistics.csv")

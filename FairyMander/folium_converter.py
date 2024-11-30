@@ -5,31 +5,31 @@ from fairymander.data import folium_longlat
 from folium import plugins
 
 """
-This module contains utilities to convert pandas dataframes into interactive maps
-using folium
+This module contains utilities to convert pandas DataFrames into interactive maps
+using Folium.
 """
 
 def map_to_folium(state: str, district_gdf: gpd.GeoDataFrame) -> folium.Map:
     """
-    Converts the given geopandas dataframe district map into an interactable visualization in folium
+    Converts the given GeoPandas DataFrame district map into an interactive visualization in Folium.
 
     Parameters
     ----------
     state: str
-        the two letter abbreviation for the state the district map belongs to (i,e, az, fl, ny)
+        The two-letter abbreviation for the state the district map belongs to (e.g., az, fl, ny).
     district_gdf: GeoDataFrame
-        dataframe containing the districting plan to be viusalized for the given state
+        DataFrame containing the districting plan to be visualized for the given state.
 
     Returns
     -------
-    districtMap: Map
-        folium map containing the visualization for the district map
+    district_map: Map
+        Folium map containing the visualization for the district map.
     """
     lat, long, zoom = folium_longlat[state]
-    # use folium.map to create a map and center it using latitude and longitude coordinates
-    district_map = folium.Map(location=[lat, long], zoom_start=zoom) # (arizona)
+    # Use folium.Map to create a map and center it using latitude and longitude coordinates
+    district_map = folium.Map(location=[lat, long], zoom_start=zoom)
 
-    # create colormap to display on the map
+    # Create a colormap to display on the map
     minDis = district_gdf["District"].min()
     maxDis = district_gdf["District"].max()
     colormap = cm.LinearColormap(
@@ -46,17 +46,17 @@ def map_to_folium(state: str, district_gdf: gpd.GeoDataFrame) -> folium.Map:
         caption='District'
     )
 
-    # add a caption to the colormap
+    # Add a caption to the colormap
     colormap.caption = "District"
 
-    # option to fullscreen
+    # Option to fullscreen
     plugins.Fullscreen(
         position='topleft',
         title='Expand',
         title_cancel='Exit',
     ).add_to(district_map)
 
-    # create a style function for the map that fills in each district with a color based on each district, starting from district 1 up to all districts in that state
+    # Create a style function for the map that fills in each district with a color based on each district, starting from district 1 up to all districts in that state
     def style_function(feature):
         colorDist = colormap(feature['properties']['District'])
         return {
@@ -66,7 +66,7 @@ def map_to_folium(state: str, district_gdf: gpd.GeoDataFrame) -> folium.Map:
             "fillColor": colorDist,
         }
 
-    # show details when hovering over a district on the map
+    # Show details when hovering over a district on the map
     tooltip = folium.GeoJsonTooltip(
         fields=["District", "C_TOT22"],
         aliases=["District:", "Population:"],
@@ -78,34 +78,34 @@ def map_to_folium(state: str, district_gdf: gpd.GeoDataFrame) -> folium.Map:
     """
     )
 
-    # use folium to display district boundaries on the map
+    # Use Folium to display district boundaries on the map
     folium.GeoJson(
         district_gdf,
         style_function=style_function,
         tooltip=tooltip,
     ).add_to(district_map)
 
-    # add the colormap to the map
+    # Add the colormap to the map
     colormap.add_to(district_map)
 
     return district_map
 
 def map_to_folium_from_file(state: str, file_path: str) -> gpd.GeoDataFrame:
     """
-    Converts a geopandas dataframe district map pulled from the given file path
-    into an interactable visualization in folium
+    Converts a GeoPandas DataFrame district map pulled from the given file path
+    into an interactive visualization in Folium.
 
     Parameters
     ----------
     state: str
-        the two letter abbreviation for the state the district map belongs to (i,e, az, fl, ny)
+        The two-letter abbreviation for the state the district map belongs to (e.g., az, fl, ny).
 
     file_path: str
-        the .shp file path for the geodataframe to load
+        The .shp file path for the GeoDataFrame to load.
 
     Returns
     -------
-    districtMap: Map
-        folium map containing the visualization for the district map
+    district_map: Map
+        Folium map containing the visualization for the district map.
     """
     return map_to_folium(state, gpd.read_file(file_path))
