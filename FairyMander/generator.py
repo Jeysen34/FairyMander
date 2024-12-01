@@ -106,8 +106,8 @@ class DistrictGenerator:
         else:
             partition_updaters["election"] = simulated_election
 
-        return GeographicPartition.from_random_assignment(state_graph, num_districts[self.prefix], self.deviation, 'C_TOT22', updaters=partition_updaters)
-
+        my_part = GeographicPartition.from_random_assignment(state_graph, num_districts[self.prefix], self.deviation, 'C_TOT22', updaters=partition_updaters)
+        return my_part
 
     def _generate_maps(self, initial_partition: GeographicPartition) -> list[Tuple[float, list[GeographicPartition]]]:
         """
@@ -157,8 +157,8 @@ class DistrictGenerator:
             maximize=maximize,
         )
 
-        best = []
-        seen_scores = set()
+        self.best = []
+        self.seen_scores = set()
 
         for i, item in enumerate(recom_chain.simulated_annealing(
             self.steps,
@@ -173,12 +173,12 @@ class DistrictGenerator:
                 # We apply the negative since heapq uses min heaps
                 current_opt_metric = -abs(recom_chain.best_part["election"].efficiency_gap())
 
-            if current_opt_metric not in seen_scores:
-                heapq.heappush(best, (current_opt_metric, recom_chain.best_part.assignment))
-                if len(best) > self.num_maps:
-                    heapq.heappop(best)
-            seen_scores.add(current_opt_metric)
-        return [(abs(opt_metric), partition) for opt_metric, partition in best]
+            if current_opt_metric not in self.seen_scores:
+                heapq.heappush(self.best, (current_opt_metric, recom_chain.best_part.assignment))
+                if len(self.best) > self.num_maps:
+                    heapq.heappop(self.best)
+            self.seen_scores.add(current_opt_metric)
+        return [(abs(opt_metric), partition) for opt_metric, partition in self.best]
 
     def run(self) -> list[gpd.GeoDataFrame]:
         """
