@@ -317,3 +317,178 @@ def calc_dissimilarity_index(test_map: gpd.GeoDataFrame) -> dict:
         else:
             print(f"{demographic} not found in map.")
     return dis_indices
+
+def compare_maps(map_one, map_two, verbose=False, show_maps = True):
+    """
+    Performs a comparison operation between the two given maps' fairness metrics, showing a final
+    comparison between them
+
+    Parameters
+    ----------
+    map_one : GeoDataFrame
+        geopandas dataframe containing the first district map to be compared
+
+    map_two : GeoDataFrame
+        geopandas dataframe containing the second district map to be compared
+
+    verbose : bool
+        indicates a verbose output, which will provide descriptions of the metrics along
+        with their values
+
+    show_maps : bool
+        indicates whether the analysis should show the maps, plotted as geographies
+    """
+    if show_maps:
+        fig, ax = plt.subplots(1, 2, figsize=(20, 10))
+
+        # Plot the first map
+        map_one.plot(column='District', ax=ax[0], legend=True, cmap="rainbow")
+        ax[0].set_title("District Map One")
+
+        # Plot the second map
+        map_two.plot(column='District', ax=ax[1], legend=True, cmap="rainbow")
+        ax[1].set_title("District Map Two")
+
+        plt.tight_layout()
+        plt.show()
+    map_one_winning_metrics = []
+    map_two_winning_metrics = []
+    ties = []
+
+    map_one_metrics = get_metric_dict(map_one)
+    map_two_metrics = get_metric_dict(map_two)
+
+    print("Running Fairness Comparison Analysis")
+    print("------------------------------------")
+    if verbose:
+        print("The Polsby-Popper Score is a district compactness measure. It is the ratio between a district's area and its perimeter.")
+        print("Ranges from 0-1, with values closer to 1 meaning higher comapctness")
+    print(f"Average Polsby-Popper Score for Map 1: {map_one_metrics['Avg Polsby-Popper']}")
+    print(f"Average Polsby-Popper Score for Map 2: {map_two_metrics['Avg Polsby-Popper']}")
+    if map_one_metrics['Avg Polsby-Popper'] > map_two_metrics['Avg Polsby-Popper']:
+        print("Map One has a better Polsby-Popper score")
+        map_one_winning_metrics.append('Polsby-Popper')
+    elif map_one_metrics['Avg Polsby-Popper'] < map_two_metrics['Avg Polsby-Popper']:
+        print("Map Two has a better Polsby-Popper score")
+        map_two_winning_metrics.append('Polsby-Popper')
+    else:
+        print("Both maps have the same Polsby-Popper score")
+        ties.append("Polsby-Popper")
+    print()
+    if verbose:
+        print("The Reock Score is a district compactness measure. It is the ratio between a district's area and the area of a minimum bounding circle around the district.")
+        print("Ranges from 0-1, with values closer to 1 meaning higher comapctness")
+    print(f"Average Reock Score for Map 1: {map_one_metrics['Avg Reock']}")
+    print(f"Average Reock Score for Map 2: {map_two_metrics['Avg Reock']}")
+    if map_one_metrics['Avg Reock'] > map_two_metrics['Avg Reock']:
+        print("Map One has a better Reock score")
+        map_one_winning_metrics.append('Reock')
+    elif map_one_metrics['Avg Reock'] < map_two_metrics['Avg Reock']:
+        print("Map Two has a better Reock score")
+        map_two_winning_metrics.append('Reock')
+    else:
+        print("Both maps have the same Reock score")
+        ties.append("Reock")
+    print()
+    if verbose:
+        print("The Efficiency Gap is a district competitiveness measure. It uses wasted votes in an election (i.e., votes that didn't contribute to the election outcome) to quantify partisanship")
+        print("A percent difference 0-100, where a negative (-) value indicates a Democrat advantage, while a positive (+) value indicates a Republican advantage")
+    print(f"Efficiency Gap for Map 1: {map_one_metrics['Efficiency Gap']}")
+    print(f"Efficiency Gap for Map 2: {map_two_metrics['Efficiency Gap']}")
+    if abs(map_one_metrics['Efficiency Gap']) < abs(map_two_metrics['Efficiency Gap']):
+        print("Map One has a better Efficiency Gap")
+        map_one_winning_metrics.append('Efficiency Gap')
+    elif abs(map_one_metrics['Efficiency Gap']) > abs(map_two_metrics['Efficiency Gap']):
+        print("Map Two has a better Efficiency Gap")
+        map_two_winning_metrics.append('Efficiency Gap')
+    else:
+        print("Both maps have the same Efficiency Gap")
+        ties.append('Efficiency Gap')
+    print()
+    if verbose:
+        print("The Mean Median Difference is a district competitiveness measure. It is the difference between a party's average vote share and its median vote share across all districts")
+        print("A percent difference 0-100, where a negative (-) value indicates a Democrat advantage, while a positive (+) value indicates a Republican advantage")
+    print(f"Mean Median Difference, Map One: {map_one_metrics['Mean Median Difference']}")
+    print(f"Mean Median Difference, Map Two: {map_two_metrics['Mean Median Difference']}")
+    if abs(map_one_metrics['Mean Median Difference']) < abs(map_two_metrics['Mean Median Difference']):
+        print("Map One has a better Mean Median Difference")
+        map_one_winning_metrics.append('Mean Median Difference')
+    elif abs(map_one_metrics['Mean Median Difference']) > abs(map_two_metrics['Mean Median Difference']):
+        print("Map Two has a better Mean Median Difference")
+        map_two_winning_metrics.append('Mean Median Difference')
+    else:
+        print("Both maps have the same Mean Median Difference")
+        ties.append("Mean Median Difference")
+    print()
+    if verbose:
+        print("The Lopsided Margin test is a district competitiveness measure. It is the difference between the average percentages by which each party won in a district.")
+        print("A percent difference 0-100, where a negative (-) value indicates Republicans have been packed (i.e., a Democrat advantage), where a positive (+) value indicates Democrats have been packed (i.e., a Republican advantage")
+    if map_one_metrics['Lopsided Margin']:
+        print(f"Lopsided Margin Score, Map One: {map_one_metrics['Lopsided Margin']}")
+    else:
+        print("One party won every district in Map One, so lopsided margin is not calculable.")
+    if map_two_metrics['Lopsided Margin']:
+        print(f"Lopsided Margin Score, Map Two: {map_two_metrics['Lopsided Margin']}")
+    else:
+        print("One party won every district in Map Two, so lopsided margin is not calculable.")
+    if map_one_metrics['Lopsided Margin'] and map_two_metrics['Lopsided Margin']:
+        if abs(map_one_metrics['Lopsided Margin']) < abs(map_two_metrics['Lopsided Margin']):
+            print("Map One has a better Lopsided Margin Score")
+            map_one_winning_metrics.append('Lopsided Margin')
+        elif abs(map_one_metrics['Lopsided Margin']) > abs(map_two_metrics['Lopsided Margin']):
+            print("Map Two has a better Lopsided Margin Score")
+            map_two_winning_metrics.append('Lopsided Margin')
+        else:
+            ties.append('Lopsided Margin')
+            print("Both maps have the same Lopsided Margin Score")
+    print()
+    if verbose:
+        print("The Disimilarity Index is a district minority representation measure. Each index indicates how spread out the minority population is across the district plan.")
+        print("Ranges from 0-1, with values closer to 1 indicating higher minority segregation between districts")
+    for ethnicity, diss_index in map_one_metrics['Dissimilarity Indices'].items():
+        print(f"Dissimilarity index, {eth_common_names[ethnicity]}, for Map One: {diss_index}")
+    for ethnicity, diss_index in map_two_metrics['Dissimilarity Indices'].items():
+        print(f"Dissimilarity index, {eth_common_names[ethnicity]}, for Map Two: {diss_index}")
+    for ethnicity, diss_index in map_one_metrics['Dissimilarity Indices'].items():
+        if diss_index < map_two_metrics['Dissimilarity Indices'][ethnicity]:
+            print(f"Map One has a better Dissimilarity Index for {eth_common_names[ethnicity]} minority population")
+            map_one_winning_metrics.append(f'Dissimilarity Index: {eth_common_names[ethnicity]}')
+        elif diss_index > map_two_metrics['Dissimilarity Indices'][ethnicity]:
+            print(f"Map Two has a better Dissimilarity Index for {eth_common_names[ethnicity]} minority population")
+            map_two_winning_metrics.append(f'Dissimilarity Index: {eth_common_names[ethnicity]}')
+        else:
+            ties.append(f'Dissimilarity Index: {eth_common_names[ethnicity]}')
+            print(f"Both maps have the same Dissimilarity Index for {eth_common_names[ethnicity]}")
+    print()
+
+    print("Comparison Summary")
+    print("-------------------")
+    if len(map_one_winning_metrics) > 0:
+        print(f"Map One is better in {len(map_one_winning_metrics)} metrics:")
+        print(", ".join(map_one_winning_metrics))
+    else:
+        print("Map One was not better in any metrics")
+    print()
+
+    if (len(map_two_winning_metrics) > 0):
+        print(f"Map Two is better in {len(map_two_winning_metrics)} metrics:")
+        print(", ".join(map_two_winning_metrics))
+    else:
+        print("Map Two was not better in any metrics")
+    print()
+
+    if len(ties) > 0:
+        print(f"There were {len(ties)} ties:")
+        print(", ".join(ties))
+    else:
+        print("There were no ties.")
+    print()
+
+    if len(map_one_winning_metrics) > len(map_two_winning_metrics):
+        print("Overall, Map One has better metrics")
+    elif len(map_one_winning_metrics) < len(map_two_winning_metrics):
+        print("Overall, Map Two has better metrics")
+    else:
+        print("The Maps tied in metric analysis")
+
+    return map_one_winning_metrics, map_two_winning_metrics, ties

@@ -6,7 +6,7 @@ from gerrychain.tree import bipartition_tree
 from gerrychain.proposals import recom
 from gerrychain.constraints import contiguous
 from functools import partial
-from fairymander.data import num_districts, epsg
+from data import num_districts, epsg
 from gerrychain.optimization import SingleMetricOptimizer
 from typing import Tuple
 import heapq
@@ -71,7 +71,7 @@ class DistrictGenerator:
             GeoPandas DataFrame of the census block data loaded from the file.
         """
         print("\nGetting state GeoDataFrame")
-        package_path = os.path.dirname(importlib.util.find_spec("fairymander.generator").origin)
+        package_path = os.path.dirname(importlib.util.find_spec("generator").origin)
         file_path = os.path.join(package_path, f"Data/finalData/{self.prefix}/{self.prefix}_bg_data.zip")
         geo_df = gpd.read_file(f"zip://{file_path}")
         geo_df.to_crs(epsg=epsg[self.prefix], inplace=True)
@@ -249,3 +249,8 @@ class DistrictGenerator:
         Returns
         -------
         final_maps
+        """
+        final_maps = self.run()
+        for index, curr_map in enumerate(final_maps):
+            curr_map.to_file(f"{directory}/{file_prefix}_{index}.shp")
+        return final_maps
