@@ -1,0 +1,14 @@
+pandas==2.2.2
+geopandas==1.0.1
+matplotlib==3.9.2
+folium==0.16.0
+notebook==7.2.2
+ipython==8.28.0
+jupyterlab==4.2.5
+libpysal==4.12.1
+sympy==1.12
+gerrychain==0.3.2
+geodatasets==2024.8.0
+tqdm==2.2.3
+pytest==8.3.3
+pytest-mock==3.14.0

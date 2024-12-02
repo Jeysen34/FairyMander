@@ -6,7 +6,7 @@ from gerrychain.tree import bipartition_tree
 from gerrychain.proposals import recom
 from gerrychain.constraints import contiguous
 from functools import partial
-from data import num_districts, epsg
+from fairymander.data import num_districts, epsg
 from gerrychain.optimization import SingleMetricOptimizer
 from typing import Tuple
 import heapq
@@ -71,7 +71,7 @@ class DistrictGenerator:
             GeoPandas DataFrame of the census block data loaded from the file.
         """
         print("\nGetting state GeoDataFrame")
-        package_path = os.path.dirname(importlib.util.find_spec("generator").origin)
+        package_path = os.path.dirname(importlib.util.find_spec("fairymander.generator").origin)
         file_path = os.path.join(package_path, f"Data/finalData/{self.prefix}/{self.prefix}_bg_data.zip")
         geo_df = gpd.read_file(f"zip://{file_path}")
         geo_df.to_crs(epsg=epsg[self.prefix], inplace=True)
@@ -236,21 +236,30 @@ class DistrictGenerator:
 
     def run_and_save(self, directory: str, file_prefix: str) -> list[gpd.GeoDataFrame]:
         """
-        Runs the generator, returns the results, and saves the resulting maps to the specified directory.
+        Performs run, returns results and saves the result maps to the specified directory
 
         Parameters
         ----------
         directory: str
-            The directory in the user's filesystem where the maps should be saved.
+            the directory in the user's filesystem that the maps should be saved under
 
         file_prefix : str
-            The prefix for file names the maps will be saved under.
+            the prefix for file names the maps will be saved under
 
         Returns
         -------
-        final_maps
+        final_maps : list[gpd.GeoDataFrame]
+            list of geopandas dataframes corresponding to the final generated district maps. they
+            are "dissolved", meaning the individual geographic units have been combined into districts
         """
         final_maps = self.run()
+
+        print(f"Saving maps to {directory}...")
         for index, curr_map in enumerate(final_maps):
-            curr_map.to_file(f"{directory}/{file_prefix}_{index}.shp")
+            next_dir = f"{directory}/{file_prefix}/{file_prefix}-{index}"
+            if not os.path.exists(next_dir):
+                os.makedirs(next_dir)
+            curr_map.to_file(f"{next_dir}/{file_prefix}-{index}.shp")
+        print("Maps saved.")
+
         return final_maps
