@@ -6,7 +6,7 @@ import pandas as pd
 """
 Module for obtaining data relevant to FairyMander district generation and comparison.
 """
-package_path = os.path.dirname(importlib.util.find_spec("data").origin)
+package_path = os.path.dirname(importlib.util.find_spec("fairymander.data").origin)
 
 # Dictionary for the number of districts each state is apportioned
 num_districts = {
